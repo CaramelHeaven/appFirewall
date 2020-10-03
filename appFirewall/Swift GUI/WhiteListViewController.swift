@@ -89,14 +89,6 @@ class WhiteListViewController: appViewController {
 		cell.textField?.textColor = NSColor.textColor
 		return cell
 	}
-	
-	// display addRule sheet (allows user to manually add a new rule)
-	@IBAction func openSheetClick2(_ sender: NSButton) {
-		let controller = self.storyboard!.instantiateController(withIdentifier: "addRuleViewController") as! addRuleViewController
-		controller.mode = "whitelist"
-		controller.parentController = self
-		self.presentAsSheet(controller)
-	}
 		
 	// allow users to whitelist an app by dragging and dropping
 	func add(apps:[NSPasteboardItem]?) {

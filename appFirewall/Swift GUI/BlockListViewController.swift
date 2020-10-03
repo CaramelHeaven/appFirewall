@@ -100,14 +100,6 @@ class BlockListViewController: appViewController {
 		return cell
 	}
 	
-	// display addRule sheet (allows user to manually add a new rule)
-	@IBAction func openSheetClick(_ sender: NSButton) {
-		let controller = self.storyboard!.instantiateController(withIdentifier: "addRuleViewController") as! addRuleViewController
-		controller.mode = "blacklist"
-		controller.parentController = self
-		self.presentAsSheet(controller)
-	}
-	
 	// allow users to block an app by dragging and dropping
 	func add(apps:[NSPasteboardItem]?) {
 		guard let items = apps else { return }

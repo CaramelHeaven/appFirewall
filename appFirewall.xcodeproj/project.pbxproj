@@ -28,7 +28,6 @@
 		91607BBA236AB282002E50A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91607BB8236AB282002E50A8 /* Main.storyboard */; };
 		91607BC4236AB2D1002E50A8 /* pid_conn_info.c in Sources */ = {isa = PBXBuildFile; fileRef = 91607BC3236AB2D1002E50A8 /* pid_conn_info.c */; };
 		91607BC6236AB7C1002E50A8 /* BlockListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91607BC5236AB7C1002E50A8 /* BlockListViewController.swift */; };
-		91607BC8236AB7CA002E50A8 /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91607BC7236AB7CA002E50A8 /* LogViewController.swift */; };
 		91607BCA236AD090002E50A8 /* sniffer_blocker.c in Sources */ = {isa = PBXBuildFile; fileRef = 91607BC9236AD08F002E50A8 /* sniffer_blocker.c */; };
 		91607BCF236AD7F5002E50A8 /* libpcap.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 91607BCD236AD702002E50A8 /* libpcap.tbd */; };
 		91607BF6237142A0002E50A8 /* log.c in Sources */ = {isa = PBXBuildFile; fileRef = 91607BF5237142A0002E50A8 /* log.c */; };
@@ -62,7 +61,6 @@
 		91C0DF9D23B0B05600E5215B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91C0DF9C23B0B05600E5215B /* Assets.xcassets */; };
 		91C0DFA023B0B05600E5215B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91C0DF9E23B0B05600E5215B /* Main.storyboard */; };
 		91D96AD3239648D400AAA73B /* dns_conn_cache.c in Sources */ = {isa = PBXBuildFile; fileRef = 91D96AD2239648D400AAA73B /* dns_conn_cache.c */; };
-		91EF664B23E36B4B008A2FE7 /* addRuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91EF664A23E36B4B008A2FE7 /* addRuleViewController.swift */; };
 		91FDE84323DC00BC0097BBCA /* libcurl.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 91FDE84223DC00BC0097BBCA /* libcurl.tbd */; };
 		91FDE89823E0B8740097BBCA /* dnscrypt-proxy.toml in Resources */ = {isa = PBXBuildFile; fileRef = 91FDE89723E0B8740097BBCA /* dnscrypt-proxy.toml */; };
 		91FDE8B423E1A8AE0097BBCA /* dnscrypt-proxy in CopyFiles */ = {isa = PBXBuildFile; fileRef = 91FDE89523E0B8210097BBCA /* dnscrypt-proxy */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -187,7 +185,6 @@
 		91607BC2236AB2D1002E50A8 /* appFirewall-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "appFirewall-Bridging-Header.h"; sourceTree = "<group>"; };
 		91607BC3236AB2D1002E50A8 /* pid_conn_info.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pid_conn_info.c; sourceTree = "<group>"; };
 		91607BC5236AB7C1002E50A8 /* BlockListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockListViewController.swift; sourceTree = "<group>"; };
-		91607BC7236AB7CA002E50A8 /* LogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogViewController.swift; sourceTree = "<group>"; };
 		91607BC9236AD08F002E50A8 /* sniffer_blocker.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sniffer_blocker.c; sourceTree = "<group>"; };
 		91607BCD236AD702002E50A8 /* libpcap.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libpcap.tbd; path = usr/lib/libpcap.tbd; sourceTree = SDKROOT; };
 		91607BCE236AD717002E50A8 /* libpcap.A.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libpcap.A.tbd; path = usr/lib/libpcap.A.tbd; sourceTree = SDKROOT; };
@@ -255,7 +252,6 @@
 		91ED43E723E5F90D00966771 /* dns_test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = dns_test.m; sourceTree = "<group>"; };
 		91ED43E923E6050B00966771 /* sniffer_blocker_test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = sniffer_blocker_test.m; sourceTree = "<group>"; };
 		91ED43EB23E6051D00966771 /* pid_conn_info_test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = pid_conn_info_test.m; sourceTree = "<group>"; };
-		91EF664A23E36B4B008A2FE7 /* addRuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addRuleViewController.swift; sourceTree = "<group>"; };
 		91FDE84223DC00BC0097BBCA /* libcurl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurl.tbd; path = usr/lib/libcurl.tbd; sourceTree = SDKROOT; };
 		91FDE89523E0B8210097BBCA /* dnscrypt-proxy */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "dnscrypt-proxy"; sourceTree = "<group>"; };
 		91FDE89723E0B8740097BBCA /* dnscrypt-proxy.toml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "dnscrypt-proxy.toml"; sourceTree = "<group>"; };
@@ -400,10 +396,8 @@
 				91494780239F6CA800C01432 /* appTabViewController.swift */,
 				9183583623A1BF81008FDBB4 /* appViewController.swift */,
 				91607BB4236AB280002E50A8 /* ActiveConnsViewController.swift */,
-				91607BC7236AB7CA002E50A8 /* LogViewController.swift */,
 				91607BC5236AB7C1002E50A8 /* BlockListViewController.swift */,
 				9139F686237FDE8E00600D37 /* WhiteListViewController.swift */,
-				91EF664A23E36B4B008A2FE7 /* addRuleViewController.swift */,
 				916ECAFE23AF5BAA00023AEA /* SettingsViewController.swift */,
 				919074172397BA7900DE49DE /* Config.swift */,
 				9180E17B238D2882007002CB /* installHelper.swift */,
@@ -662,7 +656,6 @@
 				9139F687237FDE8E00600D37 /* WhiteListViewController.swift in Sources */,
 				9139F68E2381E3FF00600D37 /* blButton.swift in Sources */,
 				9180E17E238D2D07007002CB /* Helpers.swift in Sources */,
-				91EF664B23E36B4B008A2FE7 /* addRuleViewController.swift in Sources */,
 				91ABB29823773595007F8FFE /* hostlists.c in Sources */,
 				9180E1732388ABB7007002CB /* is_blocked.c in Sources */,
 				91607BFA23714D46002E50A8 /* dns_sniffer.m in Sources */,
@@ -671,7 +664,6 @@
 				9139F682237D355600600D37 /* circular_list.c in Sources */,
 				9180E1692387F4BB007002CB /* heap.c in Sources */,
 				9139F68C2380936800600D37 /* helpViewController.swift in Sources */,
-				91607BC8236AB7CA002E50A8 /* LogViewController.swift in Sources */,
 				91607BCA236AD090002E50A8 /* sniffer_blocker.c in Sources */,
 				9180E1702388A91F007002CB /* connection.c in Sources */,
 				9139F67F237BC49A00600D37 /* helper.c in Sources */,
