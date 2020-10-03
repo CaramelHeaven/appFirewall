@@ -56,8 +56,6 @@
 		91ABB26B2375D659007F8FFE /* libpcap.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 91607BCD236AD702002E50A8 /* libpcap.tbd */; };
 		91ABB26E237680B7007F8FFE /* table.c in Sources */ = {isa = PBXBuildFile; fileRef = 91ABB26C237680B7007F8FFE /* table.c */; };
 		91ABB28C2376F01F007F8FFE /* PreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ABB28B2376F01F007F8FFE /* PreferenceViewController.swift */; };
-		91ABB293237734DE007F8FFE /* BlackLists in Resources */ = {isa = PBXBuildFile; fileRef = 91ABB292237734DE007F8FFE /* BlackLists */; };
-		91ABB2952377350A007F8FFE /* BlackLists in CopyFiles */ = {isa = PBXBuildFile; fileRef = 91ABB292237734DE007F8FFE /* BlackLists */; };
 		91ABB29823773595007F8FFE /* hostlists.c in Sources */ = {isa = PBXBuildFile; fileRef = 91ABB29723773595007F8FFE /* hostlists.c */; };
 		91B590962390F7BC000F418D /* HyperlinkTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B590952390F7BC000F418D /* HyperlinkTextView.swift */; };
 		91B5909A23925620000F418D /* libdtrace.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 91B5909923925620000F418D /* libdtrace.tbd */; };
@@ -123,7 +121,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
-				91ABB2952377350A007F8FFE /* BlackLists in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,7 +238,6 @@
 		91ABB26C237680B7007F8FFE /* table.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = table.c; sourceTree = "<group>"; };
 		91ABB26D237680B7007F8FFE /* table.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = table.h; sourceTree = "<group>"; };
 		91ABB28B2376F01F007F8FFE /* PreferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceViewController.swift; sourceTree = "<group>"; };
-		91ABB292237734DE007F8FFE /* BlackLists */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BlackLists; sourceTree = "<group>"; };
 		91ABB29623773595007F8FFE /* hostlists.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hostlists.h; sourceTree = "<group>"; };
 		91ABB29723773595007F8FFE /* hostlists.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = hostlists.c; sourceTree = "<group>"; };
 		91B590952390F7BC000F418D /* HyperlinkTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyperlinkTextView.swift; sourceTree = "<group>"; };
@@ -350,7 +346,6 @@
 			children = (
 				9180E177238BC731007002CB /* Credits.html */,
 				919074192399072500DE49DE /* dns_connlist.dat */,
-				91ABB292237734DE007F8FFE /* BlackLists */,
 				91ED43D023E5A9BF00966771 /* tests */,
 				9180E1632386653A007002CB /* C workers */,
 				91B67F2723793C1C00706027 /* TODO */,
@@ -652,7 +647,6 @@
 				9157B052238FC2290027457A /* icons in Resources */,
 				9180E178238BC731007002CB /* Credits.html in Resources */,
 				91607BB7236AB282002E50A8 /* Assets.xcassets in Resources */,
-				91ABB293237734DE007F8FFE /* BlackLists in Resources */,
 				91607BBA236AB282002E50A8 /* Main.storyboard in Resources */,
 				916ECB0323AF8EF900023AEA /* version in Resources */,
 				91EF665123E517D5008A2FE7 /* consent.rtf in Resources */,

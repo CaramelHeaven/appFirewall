@@ -36,7 +36,6 @@ class PreferenceViewController: NSViewController {
 		// window is closing, save state
 		if (changed) {
 			DispatchQueue.global(qos: .background).async {
-			  Config.load_hostlists()
 			  self.changed = false
 			}
 		}

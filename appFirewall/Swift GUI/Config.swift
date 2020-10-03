@@ -308,7 +308,6 @@ class Config: NSObject {
 		// called by app delegate at startup
 		initMenuBar() // must be done on main thread
 		DispatchQueue.global(qos: .background).async {
-			load_hostlists()
 			initTimedCheckForUpdate()
 			initRunAtLogin()
 			initBlockQUIC()
@@ -398,47 +397,5 @@ class Config: NSObject {
 	
 	static func listsLastUpdated(value:String) {
 		UserDefaults.standard.set(value, forKey: "lists_lastUpdated")
-	}
-	
-	static func load_hostlists() {
-		// set default host list(s) to use
-		UserDefaults.standard.register(defaults: Config.defaultNameList)
-		// reload enabled lists, persistent across runs of app
-		// and wil default to above if not previously set
-		EnabledLists = UserDefaults.standard.array(forKey: "host_lists") as? [String] ?? []
-		updateAvailableLists()
-		
-		// update the host name files used, and reload,
-		// we fall back to files distributed by app
-		init_hosts_list() // initialise C helpers
-		let filePath = String(cString:get_path())
-		let backupPath = Bundle.main.resourcePath ?? "./"
-		var n = String("")
-		for item in Config.hostNameLists {
-			guard let nn = item["Name"] else { print("WARNING: problem in Config empty name in host list");  continue };
-			guard EnabledLists.firstIndex(of: nn) != nil else { continue };
-			guard let fname = item["File"] else { continue };
-			print("adding ", filePath+fname)
-			if (item["Type"]=="Hostlist") {
-				// read in file and adds to hosts list table
-				n=filePath+fname
-				if (load_hostsfile(n)<0) {
-					n=backupPath+"/BlackLists/"+fname
-					print("Falling back to loading from ",n)
-					load_hostsfile(n)
-				}
-			} else if (item["Type"]=="Blocklist") {
-				// read in file and adds to hosts list table
-				n=filePath+fname
-				if (load_blocklistfile(n)<0){
-					n=backupPath+"/BlackLists/"+fname
-					print("Falling back to loading from ",n)
-					load_blocklistfile(n)
-				}
-			}
-			let lists_lastUpdated = String(cString:get_file_modify_time(n))
-			print("from file: last updated=",lists_lastUpdated)
-			listsLastUpdated(value:lists_lastUpdated)
-		}
 	}
 }
