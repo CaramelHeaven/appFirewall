@@ -144,6 +144,7 @@ class appViewController: NSViewController {
 		}
 	}
 	
+    // block button cat
 	@objc func BlockBtnAction(sender : blButton?) {
 		sender?.clickButton()
 		// update (without scrolling)...

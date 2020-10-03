@@ -42,7 +42,7 @@ func isSIPEnabled()->Bool {
 
 func is_app_already_running()->Bool {
 	let pid_count = pgrep(Name : "appFirewall")
-	//print("is_app_already_running(): ", pid_count)
+	print("is_app_already_running(): ", pid_count)
 	if (pid_count < 0) {
 		print("pgrep error, halt.")
 		return true // or could continue ?
@@ -122,12 +122,8 @@ func start_helper(force: Bool) {
 	let authItem = AuthorizationItem(name: kSMRightBlessPrivilegedHelper,valueLength: 0, value:UnsafeMutableRawPointer(bitPattern: 0), flags: 0)
 	var authItems = [authItem]
 	var authRights:AuthorizationRights = AuthorizationRights(count: UInt32(authItems.count), items:&authItems)
-	let authFlags: AuthorizationFlags = [
-		[],
-		.extendRights,
-		.interactionAllowed,
-		.preAuthorize
-	]
+	let authFlags: AuthorizationFlags = [[], .extendRights, .interactionAllowed, .preAuthorize]
+    
 	let status = AuthorizationCreate(&authRights, nil, authFlags, &authRef)
 	if (status != errAuthorizationSuccess){
 		let error = NSError(domain:NSOSStatusErrorDomain, code:Int(status), userInfo:nil)
