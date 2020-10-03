@@ -33,10 +33,6 @@ class WhiteListViewController: appViewController {
 		if (timer != nil) { timer?.invalidate() } // don't need regular refreshes
 	}
 	
-	@IBAction func helpButton(_ sender: helpButton?) {
-		sender?.clickButton(msg:"Domains/apps added here will never be blocked, even if also on the blacklist i.e. the whitelist rules override any clashing blacklist rules.  Use this list when, for example, a connection is mistakenly blocked.  Applications can be dragged or pasted onto this window from Finder to whitelist them.")
-	}
-	
 	@IBAction func click(_ sender: NSButton?) {
 		guard let row = sender?.tag else {print("WARNING: problem in whitelistView BlockBtnAction getting row"); return}
 		let item = get_connlist_item(get_whitelist(), Int32(row))

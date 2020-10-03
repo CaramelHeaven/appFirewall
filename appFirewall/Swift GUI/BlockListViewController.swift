@@ -33,10 +33,6 @@ class BlockListViewController: appViewController {
 		if (timer != nil) { timer?.invalidate() } // don't need regular refreshes
 	}
 	
-	@IBAction func clickHelpButton(_ sender: helpButton?) {
-		sender?.clickButton(msg:"Domains/apps added here will be blocked, unless overridden by the whitelist (overridden rules are highlighted in red).  You can use this to block domains for an app that are not blocked by the standard lists but which should be.  Applications can be dragged or pasted onto this window from Finder to block them.")
-	}
-	
 	@IBAction func Click(_ sender: NSButton?) {
 		// table button to remove from blocklist
 		guard let row = sender?.tag else {print("WARNING: problem in blocklistView AllowBtnAction getting row");  return}

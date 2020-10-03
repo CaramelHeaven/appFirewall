@@ -76,16 +76,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
-    @IBAction func getInfo(_ sender: Any) {
-        let app = NSApplication.shared
-        if app.mainWindow == nil { return }
-        guard let tc: NSTabViewController = app.mainWindow?.contentViewController as? NSTabViewController else { print("ERROR on selectAll: problem getting tabview controller"); return }
-        let i = tc.selectedTabViewItemIndex
-        let v = tc.tabViewItems[i] // the currently active TabViewItem
-        guard let c = v.viewController as? appViewController else { print("ERROR on selectAll: problem getting view controller"); return }
-        c.getInfo(sender: nil)
-    }
-
     @IBAction func SelectAll(_ sender: Any) {
         // handle click on "Select All" menu entry
         let app = NSApplication.shared
