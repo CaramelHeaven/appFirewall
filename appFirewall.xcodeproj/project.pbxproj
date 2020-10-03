@@ -37,7 +37,6 @@
 		91607C2C2372FF7F002E50A8 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 91607C262372FF7E002E50A8 /* main.c */; };
 		91607C2D2372FFAE002E50A8 /* com.leith.appFirewall-Helper in CopyFiles */ = {isa = PBXBuildFile; fileRef = 91607C1E2372FF40002E50A8 /* com.leith.appFirewall-Helper */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		91607C312374080C002E50A8 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 91607C302374080B002E50A8 /* util.c */; };
-		916ECAFD23ABA1BB00023AEA /* UpdateInstallerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916ECAFC23ABA1BB00023AEA /* UpdateInstallerViewController.swift */; };
 		916ECAFF23AF5BAA00023AEA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916ECAFE23AF5BAA00023AEA /* SettingsViewController.swift */; };
 		916ECB0323AF8EF900023AEA /* version in Resources */ = {isa = PBXBuildFile; fileRef = 916ECB0223AF8EF900023AEA /* version */; };
 		9180E1662387F407007002CB /* percentile.c in Sources */ = {isa = PBXBuildFile; fileRef = 9180E1652387F407007002CB /* percentile.c */; };
@@ -55,7 +54,6 @@
 		9190741A2399077100DE49DE /* dns_connlist.dat in Resources */ = {isa = PBXBuildFile; fileRef = 919074192399072500DE49DE /* dns_connlist.dat */; };
 		91ABB26B2375D659007F8FFE /* libpcap.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 91607BCD236AD702002E50A8 /* libpcap.tbd */; };
 		91ABB26E237680B7007F8FFE /* table.c in Sources */ = {isa = PBXBuildFile; fileRef = 91ABB26C237680B7007F8FFE /* table.c */; };
-		91ABB28C2376F01F007F8FFE /* PreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ABB28B2376F01F007F8FFE /* PreferenceViewController.swift */; };
 		91ABB29823773595007F8FFE /* hostlists.c in Sources */ = {isa = PBXBuildFile; fileRef = 91ABB29723773595007F8FFE /* hostlists.c */; };
 		91B590962390F7BC000F418D /* HyperlinkTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B590952390F7BC000F418D /* HyperlinkTextView.swift */; };
 		91B5909A23925620000F418D /* libdtrace.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 91B5909923925620000F418D /* libdtrace.tbd */; };
@@ -65,8 +63,6 @@
 		91C0DFA023B0B05600E5215B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91C0DF9E23B0B05600E5215B /* Main.storyboard */; };
 		91D96AD3239648D400AAA73B /* dns_conn_cache.c in Sources */ = {isa = PBXBuildFile; fileRef = 91D96AD2239648D400AAA73B /* dns_conn_cache.c */; };
 		91EF664B23E36B4B008A2FE7 /* addRuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91EF664A23E36B4B008A2FE7 /* addRuleViewController.swift */; };
-		91EF665123E517D5008A2FE7 /* consent.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 91FDE82F23D8901B0097BBCA /* consent.rtf */; };
-		91FDE82723D856130097BBCA /* ConsentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FDE82623D856130097BBCA /* ConsentViewController.swift */; };
 		91FDE84323DC00BC0097BBCA /* libcurl.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 91FDE84223DC00BC0097BBCA /* libcurl.tbd */; };
 		91FDE89823E0B8740097BBCA /* dnscrypt-proxy.toml in Resources */ = {isa = PBXBuildFile; fileRef = 91FDE89723E0B8740097BBCA /* dnscrypt-proxy.toml */; };
 		91FDE8B423E1A8AE0097BBCA /* dnscrypt-proxy in CopyFiles */ = {isa = PBXBuildFile; fileRef = 91FDE89523E0B8210097BBCA /* dnscrypt-proxy */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -210,7 +206,6 @@
 		91607C292372FF7F002E50A8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		91607C302374080B002E50A8 /* util.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = util.c; sourceTree = "<group>"; };
 		91607C3723741D65002E50A8 /* OSLog.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OSLog.framework; path = System/Library/Frameworks/OSLog.framework; sourceTree = SDKROOT; };
-		916ECAFC23ABA1BB00023AEA /* UpdateInstallerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInstallerViewController.swift; sourceTree = "<group>"; };
 		916ECAFE23AF5BAA00023AEA /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		916ECB0223AF8EF900023AEA /* version */ = {isa = PBXFileReference; lastKnownFileType = text; path = version; sourceTree = "<group>"; };
 		9180E1642387F407007002CB /* percentile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = percentile.h; sourceTree = "<group>"; };
@@ -237,7 +232,6 @@
 		9190741C239B9FD000DE49DE /* KNOWN_ISSUES.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = KNOWN_ISSUES.md; sourceTree = "<group>"; };
 		91ABB26C237680B7007F8FFE /* table.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = table.c; sourceTree = "<group>"; };
 		91ABB26D237680B7007F8FFE /* table.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = table.h; sourceTree = "<group>"; };
-		91ABB28B2376F01F007F8FFE /* PreferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceViewController.swift; sourceTree = "<group>"; };
 		91ABB29623773595007F8FFE /* hostlists.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hostlists.h; sourceTree = "<group>"; };
 		91ABB29723773595007F8FFE /* hostlists.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = hostlists.c; sourceTree = "<group>"; };
 		91B590952390F7BC000F418D /* HyperlinkTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyperlinkTextView.swift; sourceTree = "<group>"; };
@@ -262,9 +256,6 @@
 		91ED43E923E6050B00966771 /* sniffer_blocker_test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = sniffer_blocker_test.m; sourceTree = "<group>"; };
 		91ED43EB23E6051D00966771 /* pid_conn_info_test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = pid_conn_info_test.m; sourceTree = "<group>"; };
 		91EF664A23E36B4B008A2FE7 /* addRuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addRuleViewController.swift; sourceTree = "<group>"; };
-		91FDE82623D856130097BBCA /* ConsentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsentViewController.swift; sourceTree = "<group>"; };
-		91FDE82A23D85D760097BBCA /* consent.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = consent.rtf; path = "/Users/doug/Desktop/stuff/appFirewall/appFirewall/Swift GUI/../../../../appFirewall/appFirewall/Swift GUI/consent.rtf"; sourceTree = "<absolute>"; };
-		91FDE82F23D8901B0097BBCA /* consent.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = consent.rtf; sourceTree = "<group>"; };
 		91FDE84223DC00BC0097BBCA /* libcurl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurl.tbd; path = usr/lib/libcurl.tbd; sourceTree = SDKROOT; };
 		91FDE89523E0B8210097BBCA /* dnscrypt-proxy */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "dnscrypt-proxy"; sourceTree = "<group>"; };
 		91FDE89723E0B8740097BBCA /* dnscrypt-proxy.toml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "dnscrypt-proxy.toml"; sourceTree = "<group>"; };
@@ -402,7 +393,6 @@
 		9180E16223865418007002CB /* Swift GUI */ = {
 			isa = PBXGroup;
 			children = (
-				91FDE82F23D8901B0097BBCA /* consent.rtf */,
 				9139F68D2381E3FF00600D37 /* blButton.swift */,
 				9139F68F2382890700600D37 /* helpButton.swift */,
 				9139F68B2380936800600D37 /* helpViewController.swift */,
@@ -414,15 +404,11 @@
 				91607BC5236AB7C1002E50A8 /* BlockListViewController.swift */,
 				9139F686237FDE8E00600D37 /* WhiteListViewController.swift */,
 				91EF664A23E36B4B008A2FE7 /* addRuleViewController.swift */,
-				91ABB28B2376F01F007F8FFE /* PreferenceViewController.swift */,
 				916ECAFE23AF5BAA00023AEA /* SettingsViewController.swift */,
-				91FDE82623D856130097BBCA /* ConsentViewController.swift */,
 				919074172397BA7900DE49DE /* Config.swift */,
-				916ECAFC23ABA1BB00023AEA /* UpdateInstallerViewController.swift */,
 				9180E17B238D2882007002CB /* installHelper.swift */,
 				9180E17D238D2D07007002CB /* Helpers.swift */,
 				91B590952390F7BC000F418D /* HyperlinkTextView.swift */,
-				91FDE82A23D85D760097BBCA /* consent.rtf */,
 			);
 			path = "Swift GUI";
 			sourceTree = "<group>";
@@ -649,7 +635,6 @@
 				91607BB7236AB282002E50A8 /* Assets.xcassets in Resources */,
 				91607BBA236AB282002E50A8 /* Main.storyboard in Resources */,
 				916ECB0323AF8EF900023AEA /* version in Resources */,
-				91EF665123E517D5008A2FE7 /* consent.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -672,11 +657,9 @@
 				91B590962390F7BC000F418D /* HyperlinkTextView.swift in Sources */,
 				91ABB26E237680B7007F8FFE /* table.c in Sources */,
 				9180E17C238D2882007002CB /* installHelper.swift in Sources */,
-				916ECAFD23ABA1BB00023AEA /* UpdateInstallerViewController.swift in Sources */,
 				91607BF6237142A0002E50A8 /* log.c in Sources */,
 				91D96AD3239648D400AAA73B /* dns_conn_cache.c in Sources */,
 				9139F687237FDE8E00600D37 /* WhiteListViewController.swift in Sources */,
-				91FDE82723D856130097BBCA /* ConsentViewController.swift in Sources */,
 				9139F68E2381E3FF00600D37 /* blButton.swift in Sources */,
 				9180E17E238D2D07007002CB /* Helpers.swift in Sources */,
 				91EF664B23E36B4B008A2FE7 /* addRuleViewController.swift in Sources */,
@@ -697,7 +680,6 @@
 				91607BB5236AB280002E50A8 /* ActiveConnsViewController.swift in Sources */,
 				9139F6902382890700600D37 /* helpButton.swift in Sources */,
 				9183583A23A4B86B008FDBB4 /* pgrep.c in Sources */,
-				91ABB28C2376F01F007F8FFE /* PreferenceViewController.swift in Sources */,
 				91607C312374080C002E50A8 /* util.c in Sources */,
 				9183583723A1BF81008FDBB4 /* appViewController.swift in Sources */,
 				9139F67C237BC41300600D37 /* dtrace.c in Sources */,

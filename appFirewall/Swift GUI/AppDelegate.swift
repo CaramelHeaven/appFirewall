@@ -100,10 +100,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         c.selectall(sender: nil)
     }
 
-    @IBAction func checkForUpdates(_ sender: NSMenuItem) {
-        doCheckForUpdates(quiet: false, autoUpdate: false)
-    }
-
     @IBAction func restartHelper(_ sender: Any) {
         UserDefaults.standard.set(true, forKey: "force_helper_restart")
         restart_app()
