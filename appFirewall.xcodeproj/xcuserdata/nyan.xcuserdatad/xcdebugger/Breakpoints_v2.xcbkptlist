@@ -44,8 +44,8 @@
             filePath = "appFirewall/Swift GUI/installHelper.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "start_helper(force:)"
             landmarkType = "9">
          </BreakpointContent>
@@ -60,8 +60,8 @@
             filePath = "appFirewall/Swift GUI/installHelper.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "start_helper(force:)"
             landmarkType = "9">
          </BreakpointContent>
@@ -76,8 +76,8 @@
             filePath = "appFirewall/Swift GUI/installHelper.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
             landmarkName = "start_helper(force:)"
             landmarkType = "9">
          </BreakpointContent>

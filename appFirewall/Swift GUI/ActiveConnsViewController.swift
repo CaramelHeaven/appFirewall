@@ -61,7 +61,6 @@ class ActiveConnsViewController: appViewController {
             let addr_name = String(cString: get_connlist_item_addrname(item))
             let domain = String(cString: get_connlist_item_domain(item))
             
-            del_connitem(get_blocklist(), &self.bl_item_ref!)
             del_connitem(get_blocklist(), item)
 
             let size = Int(get_connlist_size(get_blocklist()))
@@ -136,6 +135,7 @@ class ActiveConnsViewController: appViewController {
             guard let cell = tableView.makeView(withIdentifier: cellId, owner: self) as? NSTableCellView else { print("WARNING: problem in activeConns getting non-button cell"); return nil }
             cell.textField?.stringValue = content
             cell.textField?.toolTip = tip
+
             return cell
         }
     }

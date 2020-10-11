@@ -74,28 +74,6 @@ func make_data_dir() {
     print("storage path " + path)
 }
 
-func save_state() {
-    DispatchQueue.global(qos: .background).async {
-        save_log(Config.logName)
-        save_connlist(get_blocklist(), Config.blockListName); save_connlist(get_whitelist(), Config.whiteListName)
-        save_dns_cache(Config.dnsName); save_dns_conn_list(Config.dnsConnListName)
-    }
-}
-
-func load_state() {
-    load_log(Config.logName, Config.logTxtName)
-    load_connlist(get_blocklist(), Config.blockListName); load_connlist(get_whitelist(), Config.whiteListName)
-    load_dns_cache(Config.dnsName)
-    // we distribute app with preconfigured dns_conn cache so that
-    // can guess process names of common apps more quickly
-    let filePath = String(cString: get_path())
-    let backupPath = Bundle.main.resourcePath ?? "./"
-    if load_dns_conn_list(filePath, Config.dnsConnListName) < 0 {
-        print("Falling back to loading dns_conn_list from ", backupPath)
-        load_dns_conn_list(backupPath, Config.dnsConnListName)
-    }
-}
-
 import Compression
 
 func getSampleDir() -> String? {
@@ -128,54 +106,6 @@ func runCmd(cmd: String, args: [String]) -> String {
     return resp_str
 }
 
-func getFileXattribs(file: String) -> [String] {
-    /*
-     // this is nicer but doesn't return all of the extended attributes
-     var names:[String] = []
-     if let attr = try? FileManager.default.attributesOfItem(atPath:file) as NSDictionary {
-     	if let xattribs = attr["NSFileExtendedAttributes"] as? NSDictionary {
-     		for (key,_) in xattribs {
-     			if let str = key as? String {
-     				names.append(str)
-     			}
-     		}
-     	}
-     }
-     return names*/
-
-    let bufLength = listxattr(file, nil, 0, 0)
-    if bufLength != -1 {
-        let buf = UnsafeMutablePointer<Int8>.allocate(capacity: bufLength)
-        if listxattr(file, buf, bufLength, 0) != -1 {
-            if var names = NSString(bytes: buf, length: bufLength, encoding: String.Encoding.utf8.rawValue)?.components(separatedBy: "\0") {
-                names.removeLast()
-                return names
-            }
-        }
-    }
-    return []
-}
-
-func getIntstalledApps() -> [String] {
-    // returns a list of app names from /Applications.  doesn't include
-    // embedded apps e.g. Google Chrome Helper (which is embedded inside
-    // Google Chrome and its metadata isn't tagged as an app)
-
-    // to do ? could also use NSMetadataQuery but it seems much nastier
-    let output = runCmd(cmd: "/usr/bin/mdfind", args: ["kMDItemContentTypeTree=com.apple.application-bundle", "-onlyin", "/Applications"])
-    // print(output)
-    var apps: [String] = []
-    for item in output.components(separatedBy: "\n") {
-        // if let b = Bundle(path: item) {
-        // print(b.infoDictionary?["CFBundleName"], " ", p.lastPathComponent)
-        // }
-        if let p = Bundle(path: item)?.executableURL?.lastPathComponent {
-            apps.append(p)
-        }
-    }
-    return apps
-}
-
 func pgrep(Name: String) -> Int {
     // return whether any running processing match Name
     let res = Int(find_proc(Name))
@@ -193,31 +123,7 @@ func pgrep(Name: String) -> Int {
      return count */
 }
 
-func unitTesting() -> Bool {
-    // return UserDefaults.standard.bool(forKey: "testing")
-    return (NSClassFromString("XCTest") != nil)
-    // return ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
-}
-
 // MARK: - Handler UI
-
-func restart_app() {
-    // flag to app that its been restarted
-    UserDefaults.standard.set(true, forKey: "restart")
-    // relaunch app
-    NSWorkspace.shared.launchApplication("appFirewall")
-    /* let url = URL(fileURLWithPath: Bundle.main.resourcePath!)
-     let path = url.deletingLastPathComponent().deletingLastPathComponent().absoluteString
-     let task = Process()
-     task.launchPath = "/usr/bin/open"
-     task.arguments = [path]
-     task.launch() */
-
-    // and stop our copy of app
-    DispatchQueue.main.async {
-        NSApp.terminate(nil) // tidy shutdown, calls applicationWillTerminate()
-    }
-}
 
 func error_popup(msg: String) {
     print(msg) // print error to log

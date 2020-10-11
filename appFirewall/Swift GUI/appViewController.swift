@@ -55,7 +55,6 @@ class appViewController: NSViewController {
 
     override func viewWillDisappear() {
         // print("viewWillDisappear")
-        save_state()
         view.window?.saveFrame(usingName: "connsView") // record size of window
         timer.invalidate()
         super.viewWillDisappear()
