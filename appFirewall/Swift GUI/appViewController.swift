@@ -28,11 +28,6 @@ class appViewController: NSViewController {
         self.ascKey = ascKey
         self.sortKeys = sortKeys
         let menu = NSMenu()
-        menu.addItem(NSMenuItem(title: "Copy", action: #selector(copyLine), keyEquivalent: ""))
-        menu.addItem(NSMenuItem(title: "Block this app for all domains", action: #selector(blockAll), keyEquivalent: ""))
-        menu.addItem(NSMenuItem(title: "Block this domain for all apps", action: #selector(blockDomain), keyEquivalent: ""))
-        menu.addItem(NSMenuItem(title: "Allow this app for all domains", action: #selector(allowAll), keyEquivalent: ""))
-        menu.addItem(NSMenuItem(title: "Allow this domain for all apps", action: #selector(allowDomain), keyEquivalent: ""))
 
         // force using ! since shouldn't fail here and its serious if it does
         guard tableView != nil else {
@@ -90,30 +85,6 @@ class appViewController: NSViewController {
         }
     }
 
-    func restoreSelected(row: Int, hashStr: String) {
-        // if row was selected before reload, we make it selected again
-        for h in selectedRowHashes {
-            if hashStr == h {
-                // print("cell found selected match ", h)
-                appTableView?.selectRowIndexes([row], byExtendingSelection: true)
-                let i = selectedRowHashes.firstIndex(of: h) ?? -1
-                if i < 0 { // shouldn't happen
-                    print("ERROR: restoreSelected() firstIndex failed!")
-                } else {
-                    selectedRowHashes.remove(at: i) // only restore selected state once
-                }
-                break
-            }
-        }
-    }
-
-    // block button cat
-    @objc func BlockBtnAction(sender: blButton?) {
-        sender?.clickButton()
-        // update (without scrolling)...
-        appTableView?.enumerateAvailableRowViews(updateTable)
-    }
-
     func selectall(sender: AnyObject?) {
         appTableView?.selectAll(nil)
     }
@@ -140,44 +111,6 @@ class appViewController: NSViewController {
 
     @objc func pasteLine(sender: AnyObject?) {}
 
-    func handleDrag(info: NSDraggingInfo, row: Int) {}
-
-    @objc func blockAll(sender: AnyObject?) {
-        guard let row = appTableView?.selectedRow else { print("WARNING: problem in blockAll getting selected row"); return }
-        if row < 0 { return }
-        guard let cell = appTableView?.view(atColumn: 2, row: row, makeIfNecessary: true) as? blButton else { print("WARNING: problem in blockAll getting cell"); return }
-        guard var bl_item = cell.bl_item else { return }
-        add_connallitem(get_blocklist(), &bl_item)
-        // show feedback popover to user
-    }
-
-    @objc func blockDomain(sender: AnyObject?) {
-        guard let row = appTableView?.selectedRow else { print("WARNING: problem in blockDomain getting selected row"); return }
-        if row < 0 { return }
-        guard let cell = appTableView?.view(atColumn: 2, row: row, makeIfNecessary: true) as? blButton else { print("WARNING: problem in blockDomain getting cell"); return }
-        guard var bl_item = cell.bl_item else { return }
-        add_conndomainitem(get_blocklist(), &bl_item)
-        // show feedback popover to user
-    }
-
-    @objc func allowAll(sender: AnyObject?) {
-        guard let row = appTableView?.selectedRow else { print("WARNING: problem in allowAll getting selected row"); return }
-        if row < 0 { return }
-        guard let cell = appTableView?.view(atColumn: 2, row: row, makeIfNecessary: true) as? blButton else { print("WARNING: problem in allowAll getting cell"); return }
-        guard var bl_item = cell.bl_item else { return }
-        add_connallitem(get_whitelist(), &bl_item)
-        // show feedback popover to user
-    }
-
-    @objc func allowDomain(sender: AnyObject?) {
-        guard let row = appTableView?.selectedRow else { print("WARNING: problem in allowDomain getting selected row"); return }
-        if row < 0 { return }
-        guard let cell = appTableView?.view(atColumn: 2, row: row, makeIfNecessary: true) as? blButton else { print("WARNING: problem in allowDomain getting cell"); return }
-        guard var bl_item = cell.bl_item else { return }
-        add_conndomainitem(get_whitelist(), &bl_item)
-        // show feedback popover to user
-    }
-
     @objc func updateTable(rowView: NSTableRowView, row: Int) {
         // update all of the buttons in table (called after
         // pressing a button changes blacklist state etc)
@@ -190,18 +123,6 @@ class appViewController: NSViewController {
         } else {
             cell1.textField?.toolTip = cell2.tip
         }
-    }
-
-    func enableTooltips() {
-        // called when popover closes
-        toolTipsEnabled = true
-        appTableView?.enumerateAvailableRowViews(updateTable)
-    }
-
-    func disableTooltips() {
-        // called when popover opens
-        toolTipsEnabled = false
-        appTableView?.enumerateAvailableRowViews(updateTable)
     }
 
     func getTip(srcIP: String = "", ppp: Int32 = 0, ip: String, domain: String, name: String, port: String, blocked_log: Int, domains: String) -> String {
@@ -266,17 +187,6 @@ class appViewController: NSViewController {
     func getTableCell(tableView: NSTableView, tableColumn: NSTableColumn?, row: Int) -> NSView? { return nil }
 }
 
-extension appViewController: NSPopoverDelegate {
-    // catch popover open/close events so we can enable/disable tooltips
-    func popoverWillShow(_ notification: Notification) {
-        disableTooltips()
-    }
-
-    func popoverWillClose(_ notification: Notification) {
-        enableTooltips()
-    }
-}
-
 extension appViewController: NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
         return numTableRows()
@@ -298,15 +208,5 @@ extension appViewController: NSTableViewDataSource {
 extension appViewController: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         return getTableCell(tableView: tableView, tableColumn: tableColumn, row: row)
-    }
-
-    // drag and drop handlers
-    func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
-        return NSDragOperation.copy
-    }
-
-    func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
-        handleDrag(info: info, row: row)
-        return true
     }
 }
