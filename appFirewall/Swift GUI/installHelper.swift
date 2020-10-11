@@ -12,6 +12,7 @@ import Foundation
 import os
 import ServiceManagement
 
+// System integrity protection
 func isSIPEnabled() -> Bool {
     // is System Integrity Protection Enabled?
     let task = Process()
