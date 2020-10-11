@@ -127,7 +127,7 @@ func start_helper(force: Bool) {
 	let status = AuthorizationCreate(&authRights, nil, authFlags, &authRef)
 	if (status != errAuthorizationSuccess){
 		let error = NSError(domain:NSOSStatusErrorDomain, code:Int(status), userInfo:nil)
-		exit_popup(msg:"Authorization error: \(error)", force: 1)
+		
 	}else{
 		// We have authorisation from user, go ahead and install helper
 		// Call SMJobBless to verify appFirewall-Helper and,
@@ -139,7 +139,7 @@ func start_helper(force: Bool) {
 		var cfError: Unmanaged<CFError>? = nil
 		if !SMJobBless(kSMDomainSystemLaunchd, kHelperToolName as CFString, authRef, &cfError) {
 			let blessError = cfError!.takeRetainedValue()
-			exit_popup(msg:"Problem installing helper: \(blessError), exiting.", force: 1)
+            
 		}else{
 			print(kHelperToolName+" installed successfully")
 			AuthorizationFree(authRef!, [])

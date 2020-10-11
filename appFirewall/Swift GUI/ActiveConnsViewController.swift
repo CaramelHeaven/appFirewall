@@ -136,7 +136,6 @@ class ActiveConnsViewController: appViewController {
             guard let cell = tableView.makeView(withIdentifier: cellId, owner: self) as? NSTableCellView else { print("WARNING: problem in activeConns getting non-button cell"); return nil }
             cell.textField?.stringValue = content
             cell.textField?.toolTip = tip
-            setColor(cell: cell, udp: Int(item.raw.udp) == 1, white: white, blocked: blocked)
             return cell
         }
     }

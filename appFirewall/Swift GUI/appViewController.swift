@@ -11,7 +11,6 @@ import Cocoa
 class appViewController: NSViewController {
     var appTableView: NSTableView?
     var timer: Timer = Timer()
-    var asc: Bool = true // whether shown in ascending/descending order
     var popover = NSPopover()
     var popoverRow: Int = -1
     var selectedRowHashes: [String] = []
@@ -32,7 +31,6 @@ class appViewController: NSViewController {
         // force using ! since shouldn't fail here and its serious if it does
         guard tableView != nil else {
             print("ERROR: appViewDidLoad() tableView is nil!")
-            exit_popup(msg: "Internal Error: appViewDidLoad() tableView is nil!", force: 0) // this won't return
             return // to avoid compiler warning
         }
         appTableView = tableView
@@ -48,14 +46,8 @@ class appViewController: NSViewController {
         // restore to previous size
         view.window?.setFrameUsingName("connsView")
         // record active tab
-        UserDefaults.standard.set(tab, forKey: "tab_index")
-        // enable click of column header to call sortDescriptorsDidChange action below
-        asc = UserDefaults.standard.bool(forKey: ascKey)
-        if appTableView?.tableColumns[0].sortDescriptorPrototype == nil {
-            appTableView?.tableColumns[0].sortDescriptorPrototype = NSSortDescriptor(key: sortKeys[0], ascending: asc)
-            appTableView?.tableColumns[1].sortDescriptorPrototype = NSSortDescriptor(key: sortKeys[1], ascending: asc)
-        }
-        // schedule refresh of connections list every 1s
+        
+        // MARK: - RESRESHING of connections list every 1s
         timer = Timer.scheduledTimer(timeInterval: Config.viewRefreshTime, target: self, selector: #selector(refresh), userInfo: nil, repeats: true)
         timer.tolerance = 1 // we don't mind if it runs quite late
         refresh(timer: nil)
@@ -165,11 +157,8 @@ class appViewController: NSViewController {
         let log_last = numTableRows() - 1
         if row < 0 { return 0 }
         if row > log_last { return log_last }
-        if asc {
-            return row
-        } else {
-            return log_last - row
-        }
+        
+        return row
     }
 
     func invMapRow(r: Int) -> Int {
@@ -177,11 +166,8 @@ class appViewController: NSViewController {
         let log_last = numTableRows() - 1
         if r < 0 { return 0 }
         if r > log_last { return log_last }
-        if asc {
-            return r
-        } else {
-            return log_last - r
-        }
+        
+        return r
     }
 
     func getTableCell(tableView: NSTableView, tableColumn: NSTableColumn?, row: Int) -> NSView? { return nil }
@@ -190,18 +176,6 @@ class appViewController: NSViewController {
 extension appViewController: NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
         return numTableRows()
-    }
-
-    func tableView(_ tableView: NSTableView, sortDescriptorsDidChange oldDescriptors: [NSSortDescriptor]) {
-        guard let sortDescriptor = tableView.sortDescriptors.first else {
-            print("WARNING: problem getting sort descriptor"); return
-        }
-        asc = sortDescriptor.ascending
-        UserDefaults.standard.set(asc, forKey: ascKey)
-        sortKey = sortDescriptor.key
-        if asc != oldDescriptors.first?.ascending {
-            refresh(timer: nil)
-        }
     }
 }
 

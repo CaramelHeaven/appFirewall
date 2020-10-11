@@ -15,79 +15,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // private variables
     // timer for periodic polling ...
     var timer: Timer = Timer()
-    var timer_logs: Timer = Timer()
-    var timer_stats: Timer = Timer()
     var count_stats: Int = 0
     // menubar button ...
     var statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
 
-    // --------------------------------------------------------
-    // menu item event handlers
-
-    @IBAction func PreferencesMenu(_ sender: Any) {
-        // handle click on preferences menu item by opening preferences window
-        let prefTabsController: NSTabViewController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "PreferencesTabs") as! NSTabViewController
-        let prefTabsWindow = NSWindow(contentViewController: prefTabsController)
-        // hard-wire the size, for some reason window doesn't autosize
-        // to fit preferences view
-        prefTabsWindow.setContentSize(NSSize(width: 602, height: 345))
-        prefTabsWindow.styleMask.remove(.miniaturizable) // disable close button, per apple guidelines for preference panes
-        prefTabsWindow.styleMask.remove(.resizable) // fixed size
-        let vc = NSWindowController(window: prefTabsWindow)
-        vc.showWindow(self)
-        prefTabsWindow.makeKeyAndOrderFront(self) // bring to front
-    }
-
-    @IBAction func ClearLog(_ sender: Any) {
-        // handle click on "Clear Connection Log" menu entry
-        // print("clear log")
-        clear_log()
-    }
-
     func currentAppViewController() -> appViewController? {
-        guard let tc: NSTabViewController = NSApp.mainWindow?.contentViewController as? NSTabViewController else { print("ERROR on copy: problem getting tab view controller"); return nil }
+        guard let tc: NSTabViewController = NSApp.mainWindow?.contentViewController as? NSTabViewController else {
+            print("ERROR on copy: problem getting tab view controller")
+            return nil
+        }
+
         let i = tc.selectedTabViewItemIndex
         let v = tc.tabViewItems[i] // the currently active TabViewItem
-        guard let c = v.viewController as? appViewController else { print("ERROR on copy: problem getting view controller"); return nil }
+        guard let c = v.viewController as? appViewController else {
+            print("ERROR on copy: problem getting view controller")
+            return nil
+        }
+
         return c
-    }
-
-    @IBAction func copy(_ sender: Any) {
-        // handle Copy menu item by passing on to relevant view
-        // (automated handling doesn't work for some reason)
-        if NSApp.mainWindow == nil { return }
-        if let focus = NSApp.keyWindow?.fieldEditor(false, for: self) {
-            // there's a text field being edited, call its copy function
-            focus.copy(self)
-        } else {
-            // no active text field, we're copying from table
-            currentAppViewController()?.copyLine(sender: nil)
-        }
-    }
-
-    @IBAction func paste(_ sender: Any) {
-        // handle Paste menu item
-        if NSApp.mainWindow == nil { return }
-        if let focus = NSApp.keyWindow?.fieldEditor(false, for: self) {
-            // there's a text field being edited, call its paste function
-            focus.paste(self)
-        } else {
-            currentAppViewController()?.pasteLine(sender: nil)
-        }
-    }
-
-    @IBAction func SelectAll(_ sender: Any) {
-        // handle click on "Select All" menu entry
-        let app = NSApplication.shared
-        // print(app.mainWindow, app.isHidden)
-        if app.mainWindow == nil { return }
-        guard let tc: NSTabViewController = app.mainWindow?.contentViewController as? NSTabViewController else { print("ERROR on selectAll: problem getting tabview controller"); return }
-        let i = tc.selectedTabViewItemIndex
-        let v = tc.tabViewItems[i] // the currently active TabViewItem
-        // print(tc.tabViewItems)
-        // print(v.label)
-        guard let c = v.viewController as? appViewController else { print("ERROR on selectAll: problem getting view controller"); return }
-        c.selectall(sender: nil)
     }
 
     @IBAction func restartHelper(_ sender: Any) {
@@ -95,34 +40,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         restart_app()
     }
 
-    @IBAction func showSampleFolder(_ sender: NSMenuItem) {
-        if let sampleDir = getSampleDir() {
-            NSWorkspace.shared.activateFileViewerSelecting([URL(fileURLWithPath: sampleDir)])
-        }
-    }
-
-    func disableMenu() {
-        if Config.getUseMenuBar() {
-            // hide the dock icon and main menu
-            NSApp.setActivationPolicy(.accessory)
-        }
-    }
-
-    func enableMenu() {
-        // show the dock icon and main menu
-        NSApp.setActivationPolicy(.regular)
-        // menu doesn't reactivate unless we change focus away from our app
-        // and then back again, see https://stackoverflow.com/questions/41340071/macos-menubar-application-main-menu-not-being-displayed/43780588#43780588
-        if (NSRunningApplication.runningApplications(withBundleIdentifier: "com.apple.dock").first?.activate(options: []))! {
-            let deadlineTime = DispatchTime.now() + .milliseconds(200)
-            DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
-                NSApp.setActivationPolicy(.regular)
-                NSApp.activate(ignoringOtherApps: true)
-            }
-        }
-    }
-
-    // handle click on menubar item
     @objc func openapp(_ sender: Any?) {
         // reopen window
 
@@ -136,40 +53,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             if window.title == "appFirewall" {
                 print("openapp() restoring existing window")
                 window.makeKeyAndOrderFront(self) // bring to front
-                window.delegate = self // just being careful
-                enableMenu()
+
                 NSApp.activate(ignoringOtherApps: true)
                 return
             }
         }
-        // fall back to constructing window from scratch.
-        // this is an error condition, just trying to recover gracefully
         print("WARNING: openapp() falling back to creating new window")
-        if NSApp.mainWindow == nil {
-            let storyboard = NSStoryboard(name: "Main", bundle: nil)
-            print("openapp(): got storyboard")
-            guard let controller: appTabViewController = storyboard.instantiateController(withIdentifier: "TabViewController") as? appTabViewController else { print("openapp(): problem creating viewcontroller"); return }
-            print("openapp(): got controller")
-            let myWindow = NSWindow(contentViewController: controller)
-            print("openapp(): got window")
-            myWindow.delegate = self
-            let vc = NSWindowController(window: myWindow)
-            print("openapp(): got window controller")
-            vc.showWindow(self)
-            print("openapp(): show window")
-            NSApp.activate(ignoringOtherApps: true) // bring window to front of other apps
-            enableMenu()
-        }
-    }
-
-    // --------------------------------------------------------
-    @objc func stats() {
-        print_stats() // output current performance stats
-        count_stats = count_stats + 1
-        if count_stats > 0 {
-            print_escapees()
-            count_stats = 0
-        }
     }
 
     @objc func refresh() {
@@ -180,50 +69,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // check if listener thread (for talking with helper process that
         // has root privilege) has run into trouble -- if so, its fatal
         if Int(check_for_error()) != 0 {
-            exit_popup(msg: String(cString: get_error_msg()), force: Int(get_error_force()))
+            print("CRUSH")
+//            exit_popup(msg: String(cString: get_error_msg()), force: Int(get_error_force()))
             // this call won't return
         }
         // update menubar button tooltip
         if let button = statusItem.button {
             button.toolTip = "appFirewall (" + String(get_num_conns_blocked()) + " blocked)"
-        }
-    }
-
-    @objc func refreshLogs() {
-        DispatchQueue.global(qos: .background).async {
-            save_log(Config.logName)
-
-            let date = UserDefaults.standard.object(forKey: "lastSampleDate") as? NSDate
-            let numSamples = UserDefaults.standard.integer(forKey: "numSamples")
-            if date == nil { // first time sent a sample
-                UserDefaults.standard.set(NSDate(), forKey: "lastSampleDate")
-                UserDefaults.standard.set(0, forKey: "numSamples")
-            } else {
-                var interval = Config.firstSampleInterval // initially we sample daily
-                if numSamples > Config.firstSampleNum {
-                    interval = Config.sampleInterval // then monthly
-                }
-                if let diff = date?.timeIntervalSinceNow {
-                    if (diff < -interval) || Config.testSample {
-                        sampleLogData(fname: Config.logTxtName) // send a sample from log file
-                        UserDefaults.standard.set(NSDate(), forKey: "lastSampleDate")
-                        UserDefaults.standard.set(numSamples + 1, forKey: "numSamples")
-                    }
-                } else {
-                    print("WARNING: Problem getting time interval in refreshLogs()")
-                }
-            }
-            if need_log_rotate(logName: Config.logTxtName) {
-                close_logtxt() // close human-readable log file
-                log_rotate(logName: Config.logTxtName)
-                open_logtxt(Config.logTxtName) // open new log file
-                sampleLogData(fname: Config.logTxtName + "0") // send a sample of last log file
-                UserDefaults.standard.set(NSDate(), forKey: "lastSampleDate")
-            }
-            if need_log_rotate(logName: Config.appLogName) {
-                log_rotate(logName: Config.appLogName)
-                redirect_stdout(Config.appLogName) // redirect output to the new log file
-            }
         }
     }
 
@@ -264,7 +116,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
             // log basic security settings (SIP, gatekeeper etc)
             DispatchQueue.global(qos: .background).async {
-                getSecuritySettings()
+//                getSecuritySettings()
             }
             UserDefaults.standard.set(false, forKey: "first_run")
         }
@@ -290,7 +142,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         let lol = is_app_already_running()
         if lol {
-            exit_popup(msg: "appFirewall is already running!", force: 0)
+//            exit_popup(msg: "appFirewall is already running!", force: 0)
         }
 
         // useful for debugging
@@ -303,8 +155,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         UserDefaults.standard.register(defaults: ["signal": -1])
         UserDefaults.standard.register(defaults: ["logcrashes": 1])
         let sig = UserDefaults.standard.integer(forKey: "signal")
-        let logcrashes = UserDefaults.standard.integer(forKey: "logcrashes")
-        if (sig > 0) && (logcrashes > 0) {
+        if (sig > 0) {
             // we had a crash !
             if let backtrace = UserDefaults.standard.object(forKey: "backtrace") as? [String], let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
                 print("had a crash with signal ", sig, " for code release ", version)
@@ -408,15 +259,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // schedule house-keeping ...
         timer = Timer.scheduledTimer(timeInterval: Config.appDelegateRefreshTime, target: self, selector: #selector(refresh), userInfo: nil, repeats: true)
         timer.tolerance = 1 // we don't mind if it runs quite late
-        timer_logs = Timer.scheduledTimer(timeInterval: Config.appDelegateFileRefreshTime, target: self, selector: #selector(refreshLogs), userInfo: nil, repeats: true)
-        timer.tolerance = 1 // we don't mind if it runs quite late
-
-        timer_stats = Timer.scheduledTimer(timeInterval: Config.appDelegateStatsRefreshTime, target: self, selector: #selector(stats), userInfo: nil, repeats: true)
-        timer.tolerance = 1 // we don't mind if it runs quite late
-
-        // setup handler for window close event
-        print("mainWindow != nil: ", NSApp.mainWindow != nil)
-        NSApp.mainWindow?.delegate = self
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -439,12 +281,5 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // called when click on dock icon to reopen window
         openapp(nil)
         return true
-    }
-}
-
-extension AppDelegate: NSWindowDelegate {
-    func windowWillClose(_ notification: Notification) {
-        // hide the dock icon and main menu
-        disableMenu()
     }
 }
