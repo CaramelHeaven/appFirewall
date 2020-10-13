@@ -39,13 +39,16 @@
 	<false/>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2020 Doug Leith. All rights reserved.</string>
-	<key>NSMainStoryboardFile</key>
-	<string>Main</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>NSSupportsAutomaticTermination</key>
 	<true/>
 	<key>NSSupportsSuddenTermination</key>
 	<false/>
+	<key>SMPrivilegedExecutables</key>
+	<dict>
+		<key>com.caramelheaven.MacLogout-Helper</key>
+		<string>identifier &quot;com.caramelheaven.MacLogout-Helper&quot; and anchor apple generic and certificate leaf[subject.CN] = &quot;Apple Development: Sergey Fominov (GU2D34GXV5)&quot; and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
+	</dict>
 </dict>
 </plist>

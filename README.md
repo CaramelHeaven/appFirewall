@@ -1,4 +1,4 @@
-# AppFirewall
+# MacLogout
 
 My personal ideas.
 

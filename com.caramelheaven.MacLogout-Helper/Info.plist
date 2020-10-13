@@ -4,15 +4,15 @@
 <dict>
 	<key>CFBundleIdentifier</key>
 	<string>com.caramelheaven.MacLogout-Helper</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>MacLogout-Helper</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
 	<key>SMAuthorizedClients</key>
 	<array>
-		<string>identifier "com.leith.appFirewall"</string>
+		<string>identifier "com.leith.MacLogout" and anchor apple generic and certificate leaf[subject.CN] = "Apple Development: Sergey Fominov (GU2D34GXV5)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
 	</array>
 </dict>
 </plist>

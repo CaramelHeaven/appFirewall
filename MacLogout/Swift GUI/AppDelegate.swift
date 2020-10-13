@@ -8,80 +8,29 @@
 import Cocoa
 import os
 import ServiceManagement
+import SwiftUI
 
-@NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    // --------------------------------------------------------
-    // private variables
-    // timer for periodic polling ...
-    var timer: Timer = Timer()
-    var count_stats: Int = 0
+    private var timer: Timer = Timer()
+    private var count_stats: Int = 0
 
-    func currentAppViewController() -> appViewController? {
-        guard let tc: NSTabViewController = NSApp.mainWindow?.contentViewController as? NSTabViewController else {
-            print("ERROR on copy: problem getting tab view controller")
-            return nil
-        }
+    private var window: NSWindow!
 
-        let i = tc.selectedTabViewItemIndex
-        let v = tc.tabViewItems[i] // the currently active TabViewItem
-        guard let c = v.viewController as? appViewController else {
-            print("ERROR on copy: problem getting view controller")
-            return nil
-        }
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
+        let contentView = MainScreen()
 
-        return c
-    }
+        window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
+                          styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
+                          backing: .buffered, defer: false)
 
-    @objc func openapp(_ sender: Any?) {
-        // reopen window
-
-        // if window already exists,and it should since we don't
-        // release it on close, then we just reopen it.
-        // hopefully this should work almost all of the time
-        // (seems like an error if it doesn't work)
-        for window in NSApp.windows {
-            print(window, window.title)
-            // as well as the main window the status bar button has a window
-            if window.title == "appFirewall" {
-                print("openapp() restoring existing window")
-                window.makeKeyAndOrderFront(self) // bring to front
-
-                NSApp.activate(ignoringOtherApps: true)
-                return
-            }
-        }
-        print("WARNING: openapp() falling back to creating new window")
-    }
-
-    @objc func refresh() {
-        // note: state is saved on window close, no need to do it here
-        // (and if we do it here it might be interrupted by a window
-        // close event and lead to file corruption
-
-        // check if listener thread (for talking with helper process that
-        // has root privilege) has run into trouble -- if so, its fatal
-        if Int(check_for_error()) != 0 {
-            print("CRUSH")
-//            exit_popup(msg: String(cString: get_error_msg()), force: Int(get_error_force()))
-            // this call won't return
-        }
-    }
-
-    // --------------------------------------------------------
-    // application event handlers
-
-    func resetDefaults() {
-        let defaults = UserDefaults.standard
-        let dictionary = defaults.dictionaryRepresentation()
-        dictionary.keys.forEach { key in
-            defaults.removeObject(forKey: key)
-        }
+        window.isReleasedWhenClosed = false
+        window.center()
+        window.setFrameAutosaveName("Main Window")
+        window.contentView = NSHostingView(rootView: contentView)
+        window.makeKeyAndOrderFront(nil)
     }
 
     func applicationWillFinishLaunching(_ aNotification: Notification) {
-//        resetDefaults()
-
         init_stats() // must be done before any C threads are fired up
 
         // set up handler to catch errors.
@@ -93,7 +42,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         start_helper(force: force)
         // reset, force is one time only
         UserDefaults.standard.set(false, forKey: "force_helper_restart")
-        
+
         usefullUtilities()
 
         // refresing listener thread (for talking with helper process that) for stabillity I assumed?
@@ -101,26 +50,32 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         timer.tolerance = 1 // we don't mind if it runs quite late
     }
 
+    @objc func refresh() {
+        // note: state is saved on window close, no need to do it here
+        // (and if we do it here it might be interrupted by a window
+        // close event and lead to file corruption
+
+        // check if listener thread (for talking with helper process that
+        // has root privilege) has run into trouble -- if so, its fatal
+        if Int(check_for_error()) != 0 {
+            print("CRUSH")
+            //            exit_popup(msg: String(cString: get_error_msg()), force: Int(get_error_force()))
+            // this call won't return
+        }
+    }
+
     func applicationWillTerminate(_ aNotification: Notification) {
-        print("stopping")
         // viewWillDisappear() event is triggered for any open windows
         // and will call save_state(), so no need to do it again here
         stop_helper_listeners()
-        if Config.getBlockQUIC() { unblock_QUIC() }
-        if Config.getDnscrypt_proxy() { stop_dnscrypt_proxy() }
-    }
 
-    func applicationDidEnterBackground(_ aNotification: Notification) {
-        // Insert code here to tear down your application
-        // NB: don't think this function is *ever* called
-        print("going into background")
-    }
+        if Config.getBlockQUIC() {
+            unblock_QUIC()
+        }
 
-    func applicationShouldHandleReopen(_ sender: NSApplication,
-                                       hasVisibleWindows flag: Bool) -> Bool {
-        // called when click on dock icon to reopen window
-        openapp(nil)
-        return true
+        if Config.getDnscrypt_proxy() {
+            stop_dnscrypt_proxy()
+        }
     }
 }
 
@@ -157,7 +112,6 @@ extension AppDelegate {
 extension AppDelegate {
     func logFromC() {
         make_data_dir()
-
         // redirect C logging from stdout to logfile.  do this early but
         // important to call make_data_dir() first so that logfile has somewhere to live
         redirect_stdout(Config.appLogName)
@@ -178,6 +132,7 @@ extension AppDelegate {
         UserDefaults.standard.register(defaults: ["signal": -1])
         UserDefaults.standard.register(defaults: ["logcrashes": 1])
         let sig = UserDefaults.standard.integer(forKey: "signal")
+
         if sig > 0 {
             // we had a crash !
             if let backtrace = UserDefaults.standard.object(forKey: "backtrace") as? [String], let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
@@ -189,11 +144,16 @@ extension AppDelegate {
     }
 }
 
-//MARK: - DO NOT REMOVE
+// MARK: - DO NOT REMOVE
+
 func load_state() {
     load_log(Config.logName, Config.logTxtName)
-    load_connlist(get_blocklist(), Config.blockListName); load_connlist(get_whitelist(), Config.whiteListName)
+
+    load_connlist(get_blocklist(), Config.blockListName)
+    load_connlist(get_whitelist(), Config.whiteListName)
+
     load_dns_cache(Config.dnsName)
+
     // we distribute app with preconfigured dns_conn cache so that
     // can guess process names of common apps more quickly
     let filePath = String(cString: get_path())
