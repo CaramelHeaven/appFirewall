@@ -36,24 +36,6 @@ class Config: NSObject {
     static var EnabledLists: [String] = []
     static var AvailableLists: [String] = []
 
-    // is this important?
-    static func initRunAtLogin() {
-        print("run at login: ", getRunAtLogin())
-        // command to list all programs with same bundle identifier:
-        // mdfind kMDItemCFBundleIdentifier == com.leith.appFirewall-loginLaunch
-        if getRunAtLogin() {
-            let urls = LSCopyApplicationURLsForBundleIdentifier("com.leith.appFirewall-loginLaunch" as CFString, nil)?.takeRetainedValue() as? [URL]
-            print("URLs for bundle identifier com.leith.appFirewall-loginLaunch:")
-            for url in urls ?? [] {
-                let b = Bundle(url: url)
-                print(url, b?.infoDictionary?["CFBundleVersion"] as Any)
-            }
-            SMLoginItemSetEnabled("com.leith.appFirewall-loginLaunch" as CFString, true)
-        } else {
-            SMLoginItemSetEnabled("com.leith.appFirewall-loginLaunch" as CFString, false)
-        }
-    }
-
     static func checkBlockQUIC_status() {
         // confirm actual firewall status matches our settings
         let blocked = QUIC_status()
@@ -90,7 +72,6 @@ class Config: NSObject {
     static func initLoad() {
         // called by app delegate at startup
         DispatchQueue.global(qos: .background).async {
-            initRunAtLogin()
             initBlockQUIC()
         }
     }
@@ -101,7 +82,6 @@ class Config: NSObject {
 
     static func refresh(opts: Set<options>) {
         // run after updating config
-        if opts.contains(.runAtLogin) { initRunAtLogin() }
         if opts.contains(.blockQUIC) { initBlockQUIC() }
     }
 

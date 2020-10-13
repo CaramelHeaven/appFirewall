@@ -54,7 +54,7 @@ func start_helper(force: Bool) {
      	let helper_version = UserDefaults.standard.string(forKey: "helper_version")
      */
 
-    let kHelperToolName: String = "com.leith.appFirewall-Helper"
+    let kHelperToolName: String = "com.caramelheaven.MacLogout-Helper"
     // return
     if (!force) && is_helper_running(Name: kHelperToolName) {
         let version = get_helper_version(Name: kHelperToolName)

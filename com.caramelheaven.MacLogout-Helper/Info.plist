@@ -3,11 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleIdentifier</key>
-	<string>com.leith.appFirewall-Helper</string>
+	<string>com.caramelheaven.MacLogout-Helper</string>
 	<key>CFBundleName</key>
-	<string>appFirewall-Helper</string>
+	<string>MacLogout-Helper</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
 	<key>SMAuthorizedClients</key>
 	<array>
 		<string>identifier "com.leith.appFirewall"</string>

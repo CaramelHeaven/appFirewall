@@ -10,7 +10,7 @@
 #include <Security/Security.h>
 #include "util.h"
 
-#define identifier "com.leith.appFirewall"
+#define identifier "com.caramelheaven.MacLogout"
 #define dns_identifier "dnscrypt-proxy"
 #define cert_ou "Z4G8Q5Z5LN"
 #define ASCII 1536 //CFString ascii encoding

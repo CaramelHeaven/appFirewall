@@ -18,7 +18,7 @@
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
-	<string>com.leith.appFirewall</string>
+	<string>com.leith.MacLogout</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -49,8 +49,7 @@
 	<false/>
 	<key>SMPrivilegedExecutables</key>
 	<dict>
-		<key>com.leith.appFirewall-Helper</key>
-		<string>identifier &quot;com.leith.appFirewall-Helper&quot;</string>
+		<key>com.caramelheaven.MacLogout-Helper</key>
 	</dict>
 </dict>
 </plist>

@@ -36,7 +36,7 @@
 // dns over https sends traffic over loopback interface to a proxy that then
 // encrypts it.  so by sniffing loopback we can see the unencrypted dns traffic
 // and still resolve addresses.  means we're also sniffing other loopback traffic,
-// which increases work being done by appFirewall-Helper, which might be
+// which increases work being done by MacLogout-Helper, which might be
 // significant if e.g. proxying all traffic.
 // nb. when dns over https is implemented within an application (i.e. firefox, chrome)
 // then its not sent in the clear over the loopback interface so we still have a problem

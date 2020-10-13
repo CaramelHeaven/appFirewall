@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="8mD-Zi-8hb">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="8mD-Zi-8hb">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17156"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -12,11 +11,11 @@
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
                     <menu key="mainMenu" title="Main Menu" systemMenu="main" identifier="MainMenu" id="AYu-sK-qS6">
                         <items>
-                            <menuItem title="appFirewall" id="1Xt-HY-uBw">
+                            <menuItem title="MacLogout" id="1Xt-HY-uBw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="appFirewall" systemMenu="apple" id="uQy-DD-JDr">
+                                <menu key="submenu" title="MacLogout" systemMenu="apple" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="About appFirewall" id="5kV-Vb-QxS">
+                                        <menuItem title="About MacLogout" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
@@ -30,7 +29,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="oCx-mk-EFw"/>
-                                        <menuItem title="Restart appFirewall Helper" id="5G3-GQ-gAe">
+                                        <menuItem title="Restart MacLogout Helper" id="5G3-GQ-gAe">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="restartHelper:" target="Voe-Tx-rLC" id="RVV-Xy-GZH"/>
@@ -50,7 +49,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="mOs-ua-WnT"/>
-                                        <menuItem title="Hide appFirewall" keyEquivalent="h" id="Olw-nP-bQN">
+                                        <menuItem title="Hide MacLogout" keyEquivalent="h" id="Olw-nP-bQN">
                                             <connections>
                                                 <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
                                             </connections>
@@ -68,7 +67,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                                        <menuItem title="Quit appFirewall" keyEquivalent="q" id="4sb-4s-VLi">
+                                        <menuItem title="Quit MacLogout" keyEquivalent="q" id="4sb-4s-VLi">
                                             <connections>
                                                 <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
                                             </connections>
@@ -142,7 +141,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
                                     <items>
-                                        <menuItem title="appFirewall Help" keyEquivalent="?" id="FKE-Sm-Kum">
+                                        <menuItem title="MacLogout Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>
                                                 <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
                                             </connections>
@@ -174,7 +173,7 @@
                                 <rect key="frame" x="13" y="41" width="280" height="263"/>
                                 <clipView key="contentView" id="efM-hH-86t">
                                     <rect key="frame" x="0.0" y="0.0" width="280" height="263"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="aGq-5w-In4" viewBased="YES" id="Sh3-ci-Vnq">
                                             <rect key="frame" x="0.0" y="0.0" width="280" height="238"/>
@@ -185,7 +184,6 @@
                                             <tableColumns>
                                                 <tableColumn width="277" minWidth="40" maxWidth="1000" id="YzJ-dH-e0N">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Available">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -237,7 +235,7 @@
                                 <rect key="frame" x="309" y="41" width="280" height="263"/>
                                 <clipView key="contentView" id="dMU-fV-qQI">
                                     <rect key="frame" x="0.0" y="0.0" width="280" height="263"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="QUd-au-V4h" viewBased="YES" id="ZFg-Cl-F3c">
                                             <rect key="frame" x="0.0" y="0.0" width="280" height="238"/>
@@ -248,7 +246,6 @@
                                             <tableColumns>
                                                 <tableColumn width="277" minWidth="40" maxWidth="1000" id="HES-5e-iJJ">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Enabled">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -377,10 +374,10 @@
             </objects>
             <point key="canvasLocation" x="-211" y="112"/>
         </scene>
-        <!--appFirewall-->
+        <!--MacLogout-->
         <scene sceneID="J5c-Sh-upX">
             <objects>
-                <tabViewController title="appFirewall" storyboardIdentifier="TabViewController" selectedTabViewItemIndex="0" id="8mD-Zi-8hb" customClass="appTabViewController" customModule="appFirewall" customModuleProvider="target" sceneMemberID="viewController">
+                <tabViewController title="MacLogout" storyboardIdentifier="TabViewController" selectedTabViewItemIndex="0" id="8mD-Zi-8hb" customClass="appTabViewController" customModule="appFirewall" customModuleProvider="target" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem label="Active Connections" id="z0e-ma-B5d"/>
                         <tabViewItem label="Connection Log" id="MXf-ns-AgR"/>
@@ -419,7 +416,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="637" height="272"/>
                                 <clipView key="contentView" id="lyM-ob-1Y9">
                                     <rect key="frame" x="1" y="0.0" width="635" height="271"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="t3y-29-6Ba" viewBased="YES" id="eeq-4a-saj">
                                             <rect key="frame" x="0.0" y="0.0" width="635" height="246"/>
@@ -430,7 +427,6 @@
                                             <tableColumns>
                                                 <tableColumn width="150" minWidth="150" maxWidth="150" id="b8x-AL-Vna">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Application">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -463,7 +459,6 @@
                                                 </tableColumn>
                                                 <tableColumn width="386" minWidth="350" maxWidth="3000" id="inh-f6-YUc">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Established Connection">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -496,7 +491,6 @@
                                                 </tableColumn>
                                                 <tableColumn width="90" minWidth="90" maxWidth="90" id="s8K-iV-Khb">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -583,7 +577,7 @@
                                 <rect key="frame" x="0.0" y="26" width="575" height="250"/>
                                 <clipView key="contentView" id="Q8x-xc-q42">
                                     <rect key="frame" x="1" y="0.0" width="573" height="249"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="LnC-3L-9gW" viewBased="YES" id="oze-Oc-Kfa">
                                             <rect key="frame" x="0.0" y="0.0" width="573" height="224"/>
@@ -594,7 +588,6 @@
                                             <tableColumns>
                                                 <tableColumn width="166" minWidth="40" maxWidth="1000" id="zbn-J5-8gD">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Application">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -627,7 +620,6 @@
                                                 </tableColumn>
                                                 <tableColumn width="308" minWidth="40" maxWidth="3000" id="Sgl-gY-Sbi">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Remote Address">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -660,7 +652,6 @@
                                                 </tableColumn>
                                                 <tableColumn width="90" minWidth="90" maxWidth="90" id="KLM-tN-RsZ">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -695,7 +686,7 @@
                                     <rect key="frame" x="1" y="233" width="448" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Sxh-4R-kAg">
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Sxh-4R-kAg">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -760,7 +751,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="650" height="272"/>
                                 <clipView key="contentView" id="2D7-H0-xKw">
                                     <rect key="frame" x="1" y="0.0" width="648" height="271"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="VF7-ky-Vo1" viewBased="YES" id="yku-Jn-JpS">
                                             <rect key="frame" x="0.0" y="0.0" width="648" height="246"/>
@@ -771,7 +762,6 @@
                                             <tableColumns>
                                                 <tableColumn width="150" minWidth="150" maxWidth="150" id="2PA-5h-kgh">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Time">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -804,7 +794,6 @@
                                                 </tableColumn>
                                                 <tableColumn width="399" minWidth="350" maxWidth="3000" id="oMF-Y7-afh">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Connection">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -837,7 +826,6 @@
                                                 </tableColumn>
                                                 <tableColumn width="90" minWidth="90" maxWidth="90" id="dAM-K2-3iG">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -954,7 +942,7 @@
                                 <rect key="frame" x="0.0" y="26" width="575" height="297"/>
                                 <clipView key="contentView" drawsBackground="NO" id="PS2-DX-hlX">
                                     <rect key="frame" x="1" y="0.0" width="573" height="296"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="7mh-qi-Azh" viewBased="YES" id="1an-dp-RUd">
                                             <rect key="frame" x="0.0" y="0.0" width="573" height="271"/>
@@ -965,7 +953,6 @@
                                             <tableColumns>
                                                 <tableColumn width="150" minWidth="40" maxWidth="1000" id="Ypp-kH-hk7">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Application">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -998,7 +985,6 @@
                                                 </tableColumn>
                                                 <tableColumn width="324" minWidth="40" maxWidth="1000" id="i81-Ka-kdk">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Remote Address">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -1031,7 +1017,6 @@
                                                 </tableColumn>
                                                 <tableColumn width="90" minWidth="90" maxWidth="90" id="jeo-YV-4f6">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -1156,10 +1141,10 @@
             </objects>
             <point key="canvasLocation" x="-338.5" y="-649"/>
         </scene>
-        <!--appFirewall Update-->
+        <!--MacLogout Update-->
         <scene sceneID="HP6-l9-7hW">
             <objects>
-                <viewController title="appFirewall Update" storyboardIdentifier="UpdateInstallerViewController" id="KGo-sw-4NO" customClass="UpdateInstallerViewController" customModule="appFirewall" sceneMemberID="viewController">
+                <viewController title="MacLogout Update" storyboardIdentifier="UpdateInstallerViewController" id="KGo-sw-4NO" customClass="UpdateInstallerViewController" customModule="appFirewall" sceneMemberID="viewController">
                     <view key="view" id="4TM-Ez-GLE">
                         <rect key="frame" x="0.0" y="0.0" width="468" height="221"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1442,7 +1427,7 @@ Gw
                                 <rect key="frame" x="20" y="70" width="399" height="192"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="44V-gi-TOg">
                                     <rect key="frame" x="0.0" y="0.0" width="399" height="192"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" smartInsertDelete="YES" id="dMY-Jn-1R2">
                                             <rect key="frame" x="0.0" y="0.0" width="399" height="192"/>
