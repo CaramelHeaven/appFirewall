@@ -541,7 +541,6 @@ Dependencies/
 ### SwiftPackageManager ###
 Packages
 xcuserdata
-*.xcodeproj
 
 
 ### VisualStudioCode ###
