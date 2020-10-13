@@ -47,9 +47,5 @@
 	<true/>
 	<key>NSSupportsSuddenTermination</key>
 	<false/>
-	<key>SMPrivilegedExecutables</key>
-	<dict>
-		<key>com.caramelheaven.MacLogout-Helper</key>
-	</dict>
 </dict>
 </plist>
