@@ -17,7 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var timer: Timer = Timer()
     var count_stats: Int = 0
 
-    func currentAppViewController() -> appViewController? {
+    func currentAppViewController() -> NSViewController? {
         guard let tc: NSTabViewController = NSApp.mainWindow?.contentViewController as? NSTabViewController else {
             print("ERROR on copy: problem getting tab view controller")
             return nil
@@ -25,7 +25,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         let i = tc.selectedTabViewItemIndex
         let v = tc.tabViewItems[i] // the currently active TabViewItem
-        guard let c = v.viewController as? appViewController else {
+        guard let c = v.viewController else {
             print("ERROR on copy: problem getting view controller")
             return nil
         }

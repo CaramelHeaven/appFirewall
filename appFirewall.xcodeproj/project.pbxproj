@@ -39,7 +39,6 @@
 		9180E17C238D2882007002CB /* installHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9180E17B238D2882007002CB /* installHelper.swift */; };
 		9180E17E238D2D07007002CB /* Helpers-CatchErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9180E17D238D2D07007002CB /* Helpers-CatchErrors.swift */; };
 		9180E181238DECEB007002CB /* codesign.m in Sources */ = {isa = PBXBuildFile; fileRef = 9180E17F238DC38C007002CB /* codesign.m */; };
-		9183583723A1BF81008FDBB4 /* appViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9183583623A1BF81008FDBB4 /* appViewController.swift */; };
 		9183583A23A4B86B008FDBB4 /* pgrep.c in Sources */ = {isa = PBXBuildFile; fileRef = 9183583923A4B86B008FDBB4 /* pgrep.c */; };
 		919074182397BA7900DE49DE /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919074172397BA7900DE49DE /* Config.swift */; };
 		9190741A2399077100DE49DE /* dns_connlist.dat in Resources */ = {isa = PBXBuildFile; fileRef = 919074192399072500DE49DE /* dns_connlist.dat */; };
@@ -175,7 +174,6 @@
 		9180E17B238D2882007002CB /* installHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = installHelper.swift; sourceTree = "<group>"; };
 		9180E17D238D2D07007002CB /* Helpers-CatchErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Helpers-CatchErrors.swift"; sourceTree = "<group>"; };
 		9180E17F238DC38C007002CB /* codesign.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = codesign.m; sourceTree = "<group>"; };
-		9183583623A1BF81008FDBB4 /* appViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appViewController.swift; sourceTree = "<group>"; };
 		9183583823A4B86B008FDBB4 /* pgrep.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pgrep.h; sourceTree = "<group>"; };
 		9183583923A4B86B008FDBB4 /* pgrep.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = pgrep.c; sourceTree = "<group>"; };
 		919074172397BA7900DE49DE /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -310,7 +308,6 @@
 			children = (
 				9139F68D2381E3FF00600D37 /* blButton.swift */,
 				91607BB2236AB280002E50A8 /* AppDelegate.swift */,
-				9183583623A1BF81008FDBB4 /* appViewController.swift */,
 				91607BB4236AB280002E50A8 /* ActiveConnsViewController.swift */,
 				919074172397BA7900DE49DE /* Config.swift */,
 				9180E17B238D2882007002CB /* installHelper.swift */,
@@ -504,7 +501,6 @@
 				91607BB5236AB280002E50A8 /* ActiveConnsViewController.swift in Sources */,
 				9183583A23A4B86B008FDBB4 /* pgrep.c in Sources */,
 				91607C312374080C002E50A8 /* util.c in Sources */,
-				9183583723A1BF81008FDBB4 /* appViewController.swift in Sources */,
 				9139F67C237BC41300600D37 /* dtrace.c in Sources */,
 				919074182397BA7900DE49DE /* Config.swift in Sources */,
 				91FE188923E699D4004A5CF9 /* conn_list.c in Sources */,
