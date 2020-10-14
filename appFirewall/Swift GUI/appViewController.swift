@@ -13,32 +13,11 @@ class appViewController: NSViewController {
     var timer: Timer = Timer()
     var popover = NSPopover()
     var popoverRow: Int = -1
-    var selectedRowHashes: [String] = []
-    var popoverHash: String = ""
-    var toolTipsEnabled: Bool = true
-    var tab: Int = 0
-    var ascKey: String = ""
-    var sortKey: String? = ""
-    var sortKeys: [String] = []
 
     func appViewDidLoad(tableView: NSTableView?, tab: Int, ascKey: String, sortKeys: [String]) {
-        // Do basic setup after loading the view.
-        self.tab = tab
-        self.ascKey = ascKey
-        self.sortKeys = sortKeys
-        let menu = NSMenu()
-
-        // force using ! since shouldn't fail here and its serious if it does
-        guard tableView != nil else {
-            print("ERROR: appViewDidLoad() tableView is nil!")
-            return // to avoid compiler warning
-        }
         appTableView = tableView
-        appTableView?.menu = menu
         appTableView!.dataSource = self
         appTableView!.delegate = self
-        // allow drag and drop of URLs
-        appTableView!.registerForDraggedTypes([.URL, .fileURL])
     }
 
     func appViewWillAppear() {
@@ -61,20 +40,6 @@ class appViewController: NSViewController {
     }
 
     @objc func refresh(timer: Timer?) {}
-
-    func saveSelected() {
-        // save set of currently selected rows
-        let indexSet = appTableView?.selectedRowIndexes ?? []
-        selectedRowHashes = []; popoverHash = ""
-        for row in indexSet {
-            guard let cell = appTableView?.view(atColumn: 2, row: row, makeIfNecessary: true) as? blButton else { continue }
-            selectedRowHashes.append(cell.hashStr)
-            if popover.isShown && popoverRow == row {
-                print("popover active for row ", row)
-                popoverHash = cell.hashStr
-            }
-        }
-    }
 
     func selectall(sender: AnyObject?) {
         appTableView?.selectAll(nil)
@@ -107,13 +72,6 @@ class appViewController: NSViewController {
         // pressing a button changes blacklist state etc)
         guard let cell2 = rowView.view(atColumn: 2) as? blButton else { print("WARNING: problem in updateTable getting cell 2 for row ", row); return }
         cell2.updateButton()
-
-        guard let cell1 = rowView.view(atColumn: 1) as? NSTableCellView else { print("WARNING: problem in updateTable getting cell 1"); return }
-        if !toolTipsEnabled {
-            cell1.textField?.toolTip = ""
-        } else {
-            cell1.textField?.toolTip = cell2.tip
-        }
     }
 
     func getTip(srcIP: String = "", ppp: Int32 = 0, ip: String, domain: String, name: String, port: String, blocked_log: Int, domains: String) -> String {

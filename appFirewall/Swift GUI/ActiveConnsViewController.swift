@@ -34,7 +34,6 @@ class ActiveConnsViewController: appViewController {
         guard let rect = tableView?.visibleRect else { print("WARNING: activeConns problem getting visible rectangle in refresh"); return }
         guard let firstVisibleRow = tableView?.rows(in: rect).location else { print("WARNING: activeConns problem getting first visible row in refresh"); return }
         if force || ((firstVisibleRow == 0) && (Int(get_pid_changed()) != 0)) {
-            saveSelected() // save set of currently selected rows
             clear_pid_changed()
             update_gui_pid_list()
             tableView?.reloadData()
