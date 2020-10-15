@@ -68,6 +68,46 @@ class ActiveConnsViewController: NSViewController {
             clear_pid_changed()
             update_gui_pid_list()
             tableView?.reloadData()
+            
+            numLol()
+        }
+    }
+    
+    func numLol() {
+        let value = numTableRows()
+        guard value > 0 else {
+            return
+        }
+        
+        for i in 0...value {
+            catchPoePid(row: i)
+        }
+    }
+    
+    func catchPoePid(row: Int) {
+        let r = mapRow(row: row)
+        var item = get_gui_conn(Int32(r))
+        
+        let name = String(cString: &item.name.0)
+        
+        if name.contains("Exile") {
+            var bl_item = conn_to_bl_item(&item)
+            bl_item_ref = bl_item
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
+                var bl_item = self.bl_item_ref!
+                
+                add_connitem(get_blocklist(), &bl_item)
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5)) {
+                    let item = get_connlist_item(get_blocklist(), Int32(0))
+                    del_connitem(get_blocklist(), item)
+                    
+                    let size = Int(get_connlist_size(get_blocklist()))
+                    print("check size: \(size)")
+                    print("ASD")
+                }
+            }
         }
     }
 
@@ -119,55 +159,21 @@ class ActiveConnsViewController: NSViewController {
 
         var cellIdentifier: String = ""
         var content: String = ""
-        var tip: String
-        if tableColumn == tableView.tableColumns[0] {
-            tip = "PID: " + String(Int(item.pid))
-        } else {
-            var blocked_log = blocked
-            if white == 1 { blocked_log = 0 }
-            let ppp = is_ppp(item.raw.af, &item.raw.src_addr, &item.raw.dst_addr)
-            tip = getTip(srcIP: src, ppp: ppp, ip: ip, domain: domain, name: String(cString: &bl_item.name.0), port: String(Int(item.raw.dport)), blocked_log: blocked_log, domains: String(cString: get_dns_count_str(item.raw.af, item.raw.dst_addr)))
-        }
 
-        if tableColumn == tableView.tableColumns[0] {
-            cellIdentifier = "ProcessCell"
-            content = String(cString: &item.name.0)
-        } else if tableColumn == tableView.tableColumns[1] {
-            cellIdentifier = "ConnCell"
-            content = domain
-            if Int(item.raw.udp) == 1 {
-                if (item.raw.dport == 443) || (item.raw.dport == 80) {
-                    content = content + " (UDP/QUIC)"
-                } else if item.raw.dport == 53 {
-                    content = content + " (UDP/DNS)"
-                } else {
-                    content = content + " (UDP/Port " + String(item.raw.dport) + ")"
-                }
-            }
-        } else if tableColumn == tableView.tableColumns[2] {
+        if tableColumn == tableView.tableColumns[2] {
             cellIdentifier = "ButtonCell"
         }
 
         let cellId = NSUserInterfaceItemIdentifier(rawValue: cellIdentifier)
         if cellIdentifier == "ButtonCell" {
             guard let cell = tableView.makeView(withIdentifier: cellId, owner: self) as? blButton else { print("WARNING: problem in activeConns getting button cell"); return nil }
-            cell.udp = (Int(item.raw.udp) > 0)
             cell.bl_item = bl_item // take a copy so ok to free() later
-            cell.tip = tip
-            cell.hashStr = hashStr
-//             restore selected state of this row
-//            restoreSelected(row: row, hashStr: cell.hashStr)
-            // set tool tip and title;
-            cell.updateButton()
+            cell.title = String(cString: &item.name.0)
+
             cell.action = #selector(buttonClick(_:))
             return cell
-        } else {
-            guard let cell = tableView.makeView(withIdentifier: cellId, owner: self) as? NSTableCellView else { print("WARNING: problem in activeConns getting non-button cell"); return nil }
-            cell.textField?.stringValue = content
-            cell.textField?.toolTip = tip
-
-            return cell
         }
+        return nil
     }
 }
 
@@ -182,14 +188,7 @@ extension ActiveConnsViewController {
         let tip = cell1.textField?.toolTip ?? ""
         return str0 + " " + str1 + " [" + tip + "]\n"
     }
-    
-    @objc func updateTable(rowView: NSTableRowView, row: Int) {
-        // update all of the buttons in table (called after
-        // pressing a button changes blacklist state etc)
-        guard let cell2 = rowView.view(atColumn: 2) as? blButton else { print("WARNING: problem in updateTable getting cell 2 for row ", row); return }
-        cell2.updateButton()
-    }
-    
+
     func mapRow(row: Int) -> Int {
         // map from displayed row to row in list itself
         let log_last = numTableRows() - 1
@@ -207,39 +206,57 @@ extension ActiveConnsViewController {
 
         return r
     }
+}
 
+import Cocoa
 
-    func getTip(srcIP: String = "", ppp: Int32 = 0, ip: String, domain: String, name: String, port: String, blocked_log: Int, domains: String) -> String {
-        var tip: String = ""
-        var domain_ = domain
-        if domain.count == 0 {
-            domain_ = ip
+class blButton: NSButton {
+    // we extend NSButton class to allow us to store a
+    // pointer to the log entry that the row containing
+    // the button refers to.  this is needed because the
+    // log may be updated between the time the button is
+    // created and when it is pressed. and so just using
+    // the row of the log to identify the item may fail
+    // (plus we can only store integers in button tag
+    // property)
+    var bl_item: bl_item_t?
+
+    func clickButton() {
+        guard var bl_item = self.bl_item else { print("WARNING: click blButton problem getting bl_item"); return }
+
+        let name = String(cString: &bl_item.name.0)
+        if (name.count == 0) || name.contains(NOTFOUND) {
+            print("Tried to block item with process name ", NOTFOUND, " or ''")
+            return // PID name is missing, we can't add this to block list
         }
-        var maybe = "blocked"
-        var vpn: String = ""
-        if ppp > 0 {
-            maybe = "marked as blocked"
-            vpn = "NB: Filtering of VPN connections is currently unreliable.\n"
-        } else if ppp < 0 {
-            maybe = "marked as blocked"
-            vpn = "Zombie connection: interface has gone away, but app hasn't noticed yet.\n"
+
+        let domain = String(cString: &bl_item.domain.0)
+        var white: Int = 0
+        if in_connlist_htab(get_whitelist(), &bl_item, 0) != nil {
+            white = 1
         }
-        var dns = ""
-        if (Int(port) == 53) && (name != "dnscrypt-proxy") {
-            dns = "Its a good idea to encrypt DNS traffic by enabling DNS-over-HTTPS in the appFirewall preferences."
+        var blocked: Int = 0
+        if in_connlist_htab(get_blocklist(), &bl_item, 0) != nil {
+            blocked = 1
+        } else if in_hostlist_htab(domain) != nil {
+            blocked = 2
+        } else if in_blocklists_htab(&bl_item) != nil {
+            blocked = 3
         }
-        if blocked_log == 0 {
-            tip = "This connection to " + domain_ + " (" + ip + ":" + port + ") was not blocked. " + dns
-        } else if blocked_log == 1 {
-            tip = "This connection to " + domain_ + " (" + ip + ":" + port + ") was " + maybe + " for application '" + name + "' by user black list. " + dns + vpn
-        } else if blocked_log == 2 {
-            tip = "This connection to " + domain_ + " (" + ip + ":" + port + ") was " + maybe + " for all applications by hosts file. " + dns + vpn
-        } else {
-            tip = "This connection to " + domain_ + " (" + ip + ":" + port + ") was " + maybe + " for application '" + name + "' by hosts file. " + dns + vpn
+
+        if title.contains("Allow") {
+            if blocked == 1 { // on block list, remove
+                del_connitem(get_blocklist(), &bl_item)
+            } else if blocked > 1 { // on host list, add to whitelist
+                add_connitem(get_whitelist(), &bl_item)
+            }
+        } else { // block
+            if white == 1 { // on white list, remove
+                del_connitem(get_whitelist(), &bl_item)
+            }
+            if blocked == 0 {
+                add_connitem(get_blocklist(), &bl_item)
+            }
         }
-        // add some info on whether IP is shared by multiple domains
-        tip += "Domains associated with this IP address: " + domains
-        return tip
     }
-
 }
