@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8824DBCF2538C25B0057C9B0 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8824DBCE2538C25B0057C9B0 /* main.swift */; };
+		8824DBD22538C3430057C9B0 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8824DBD12538C3430057C9B0 /* MainScreen.swift */; };
+		8824DBD72538C3760057C9B0 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8824DBD62538C3760057C9B0 /* MainViewModel.swift */; };
+		88A64D75253B6061002A7F73 /* HotKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A64D74253B6061002A7F73 /* HotKey.swift */; };
+		88ED0A09253B54C300D8CD5C /* PidWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ED0A08253B54C300D8CD5C /* PidWatcher.swift */; };
 		9139F670237BB18600600D37 /* dtrace.c in Sources */ = {isa = PBXBuildFile; fileRef = 9139F66F237BB18600600D37 /* dtrace.c */; };
 		9139F673237BB1BB00600D37 /* pcap_sniffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 9139F672237BB1BB00600D37 /* pcap_sniffer.c */; };
 		9139F676237BB20F00600D37 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 9139F675237BB20F00600D37 /* util.c */; };
@@ -19,7 +24,6 @@
 		91607BB3236AB280002E50A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91607BB2236AB280002E50A8 /* AppDelegate.swift */; };
 		91607BB5236AB280002E50A8 /* ActiveConnsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91607BB4236AB280002E50A8 /* ActiveConnsViewController.swift */; };
 		91607BB7236AB282002E50A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91607BB6236AB282002E50A8 /* Assets.xcassets */; };
-		91607BBA236AB282002E50A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91607BB8236AB282002E50A8 /* Main.storyboard */; };
 		91607BC4236AB2D1002E50A8 /* pid_conn_info.c in Sources */ = {isa = PBXBuildFile; fileRef = 91607BC3236AB2D1002E50A8 /* pid_conn_info.c */; };
 		91607BCA236AD090002E50A8 /* sniffer_blocker.c in Sources */ = {isa = PBXBuildFile; fileRef = 91607BC9236AD08F002E50A8 /* sniffer_blocker.c */; };
 		91607BCF236AD7F5002E50A8 /* libpcap.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 91607BCD236AD702002E50A8 /* libpcap.tbd */; };
@@ -111,6 +115,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8824DBCE2538C25B0057C9B0 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		8824DBD12538C3430057C9B0 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
+		8824DBD62538C3760057C9B0 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		88A64D74253B6061002A7F73 /* HotKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKey.swift; sourceTree = "<group>"; };
+		88ED0A08253B54C300D8CD5C /* PidWatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PidWatcher.swift; sourceTree = "<group>"; };
 		9135AEF823C3DA7700BBC39F /* conn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = conn.h; sourceTree = "<group>"; };
 		9139F66E237BB18600600D37 /* dtrace.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dtrace.h; sourceTree = "<group>"; };
 		9139F66F237BB18600600D37 /* dtrace.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = dtrace.c; sourceTree = "<group>"; };
@@ -134,7 +143,6 @@
 		91607BB2236AB280002E50A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91607BB4236AB280002E50A8 /* ActiveConnsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveConnsViewController.swift; sourceTree = "<group>"; };
 		91607BB6236AB282002E50A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		91607BB9236AB282002E50A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		91607BBB236AB282002E50A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		91607BBC236AB282002E50A8 /* appFirewall.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = appFirewall.entitlements; sourceTree = "<group>"; };
 		91607BC2236AB2D1002E50A8 /* appFirewall-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "appFirewall-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -222,6 +230,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8824DBDA2538CAA80057C9B0 /* OLD */ = {
+			isa = PBXGroup;
+			children = (
+				91607BB4236AB280002E50A8 /* ActiveConnsViewController.swift */,
+			);
+			path = OLD;
+			sourceTree = "<group>";
+		};
 		91607BA6236AB280002E50A8 = {
 			isa = PBXGroup;
 			children = (
@@ -246,15 +262,15 @@
 		91607BB1236AB280002E50A8 /* appFirewall */ = {
 			isa = PBXGroup;
 			children = (
+				8824DBDA2538CAA80057C9B0 /* OLD */,
 				9180E177238BC731007002CB /* Credits.html */,
 				919074192399072500DE49DE /* dns_connlist.dat */,
 				91ED43D023E5A9BF00966771 /* tests */,
 				9180E1632386653A007002CB /* C workers */,
 				91B67F2723793C1C00706027 /* TODO */,
-				9180E16223865418007002CB /* Swift GUI */,
+				9180E16223865418007002CB /* Screens */,
 				91607BB6236AB282002E50A8 /* Assets.xcassets */,
 				9157B051238FC2290027457A /* icons */,
-				91607BB8236AB282002E50A8 /* Main.storyboard */,
 				91607BBB236AB282002E50A8 /* Info.plist */,
 				91607BBC236AB282002E50A8 /* appFirewall.entitlements */,
 				91607BC2236AB2D1002E50A8 /* appFirewall-Bridging-Header.h */,
@@ -301,16 +317,20 @@
 			path = "com.leith.appFirewall-Helper";
 			sourceTree = "<group>";
 		};
-		9180E16223865418007002CB /* Swift GUI */ = {
+		9180E16223865418007002CB /* Screens */ = {
 			isa = PBXGroup;
 			children = (
 				91607BB2236AB280002E50A8 /* AppDelegate.swift */,
-				91607BB4236AB280002E50A8 /* ActiveConnsViewController.swift */,
 				919074172397BA7900DE49DE /* Config.swift */,
 				9180E17B238D2882007002CB /* installHelper.swift */,
 				9180E17D238D2D07007002CB /* Helpers-CatchErrors.swift */,
+				8824DBCE2538C25B0057C9B0 /* main.swift */,
+				8824DBD12538C3430057C9B0 /* MainScreen.swift */,
+				8824DBD62538C3760057C9B0 /* MainViewModel.swift */,
+				88ED0A08253B54C300D8CD5C /* PidWatcher.swift */,
+				88A64D74253B6061002A7F73 /* HotKey.swift */,
 			);
-			path = "Swift GUI";
+			path = Screens;
 			sourceTree = "<group>";
 		};
 		9180E1632386653A007002CB /* C workers */ = {
@@ -467,7 +487,6 @@
 				9157B052238FC2290027457A /* icons in Resources */,
 				9180E178238BC731007002CB /* Credits.html in Resources */,
 				91607BB7236AB282002E50A8 /* Assets.xcassets in Resources */,
-				91607BBA236AB282002E50A8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,8 +499,11 @@
 			files = (
 				91ABB26E237680B7007F8FFE /* table.c in Sources */,
 				9180E17C238D2882007002CB /* installHelper.swift in Sources */,
+				8824DBCF2538C25B0057C9B0 /* main.swift in Sources */,
 				91607BF6237142A0002E50A8 /* log.c in Sources */,
 				91D96AD3239648D400AAA73B /* dns_conn_cache.c in Sources */,
+				8824DBD72538C3760057C9B0 /* MainViewModel.swift in Sources */,
+				88ED0A09253B54C300D8CD5C /* PidWatcher.swift in Sources */,
 				9180E17E238D2D07007002CB /* Helpers-CatchErrors.swift in Sources */,
 				91ABB29823773595007F8FFE /* hostlists.c in Sources */,
 				9180E1732388ABB7007002CB /* is_blocked.c in Sources */,
@@ -489,6 +511,7 @@
 				91607BC4236AB2D1002E50A8 /* pid_conn_info.c in Sources */,
 				9139F682237D355600600D37 /* circular_list.c in Sources */,
 				9180E1692387F4BB007002CB /* heap.c in Sources */,
+				8824DBD22538C3430057C9B0 /* MainScreen.swift in Sources */,
 				91607BCA236AD090002E50A8 /* sniffer_blocker.c in Sources */,
 				9180E1702388A91F007002CB /* connection.c in Sources */,
 				9139F67F237BC49A00600D37 /* helper.c in Sources */,
@@ -501,6 +524,7 @@
 				919074182397BA7900DE49DE /* Config.swift in Sources */,
 				91FE188923E699D4004A5CF9 /* conn_list.c in Sources */,
 				91607BB3236AB280002E50A8 /* AppDelegate.swift in Sources */,
+				88A64D75253B6061002A7F73 /* HotKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,17 +544,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		91607BB8236AB282002E50A8 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				91607BB9236AB282002E50A8 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		91607BBD236AB282002E50A8 /* Debug */ = {
@@ -584,7 +597,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -639,7 +652,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -680,7 +693,7 @@
 					"$(PROJECT_DIR)/appFirewall",
 					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks/NetworkStatistics.framework/Versions/A",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 2.04;
 				OTHER_CFLAGS = "";
 				"OTHER_CFLAGS[arch=*]" = "-Wthread-safety";
@@ -728,7 +741,7 @@
 					"$(PROJECT_DIR)/appFirewall",
 					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks/NetworkStatistics.framework/Versions/A",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 2.04;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.leith.appFirewall;

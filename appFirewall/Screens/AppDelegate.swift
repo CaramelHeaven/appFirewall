@@ -8,30 +8,18 @@
 import Cocoa
 import os
 import ServiceManagement
+import SwiftUI
 
-@NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     // --------------------------------------------------------
     // private variables
     // timer for periodic polling ...
     var timer: Timer = Timer()
     var count_stats: Int = 0
 
-    func currentAppViewController() -> NSViewController? {
-        guard let tc: NSTabViewController = NSApp.mainWindow?.contentViewController as? NSTabViewController else {
-            print("ERROR on copy: problem getting tab view controller")
-            return nil
-        }
-
-        let i = tc.selectedTabViewItemIndex
-        let v = tc.tabViewItems[i] // the currently active TabViewItem
-        guard let c = v.viewController else {
-            print("ERROR on copy: problem getting view controller")
-            return nil
-        }
-
-        return c
-    }
+    private var window: NSWindow!
+    var statusBarItem: NSStatusItem!
+    var statusBarMenu: NSMenu!
 
     @objc func openapp(_ sender: Any?) {
         // reopen window
@@ -68,37 +56,63 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
-    // --------------------------------------------------------
-    // application event handlers
-
-    func resetDefaults() {
-        let defaults = UserDefaults.standard
-        let dictionary = defaults.dictionaryRepresentation()
-        dictionary.keys.forEach { key in
-            defaults.removeObject(forKey: key)
-        }
-    }
+    let hotKey = HotKey(key: .r, modifiers: [.option])
+    let grave = HotKey(key: .grave, modifiers: [])
+    let pidWatcher = PidWatcher.shared
 
     func applicationWillFinishLaunching(_ aNotification: Notification) {
-//        resetDefaults()
+        initMyShit()
 
-        init_stats() // must be done before any C threads are fired up
+        statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+        statusBarItem.button?.title = "FUCK"
 
-        // set up handler to catch errors.
-        setup_sig_handlers()
+        statusBarMenu = NSMenu()
+        statusBarMenu.delegate = self
 
-        // install appFirewall-Helper, if not already installed
-        UserDefaults.standard.register(defaults: ["force_helper_restart": false])
-        let force = UserDefaults.standard.bool(forKey: "force_helper_restart")
-        start_helper(force: force)
-        // reset, force is one time only
-        UserDefaults.standard.set(false, forKey: "force_helper_restart")
+        statusBarMenu.addItem(withTitle: "Is poe connected?", action: nil, keyEquivalent: "")
+        statusBarMenu.addItem(withTitle: "Preferences", action: #selector(showPreferences(_:)), keyEquivalent: "")
+        statusBarMenu.addItem(NSMenuItem.separator())
+
+        statusBarMenu.addItem(withTitle: "Quit", action: #selector(quit(_:)), keyEquivalent: "")
+
+        statusBarItem.menu = statusBarMenu
         
-        usefullUtilities()
+        let contentView = MainScreen()
+        window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 100, height: 100),
+                          styleMask: [.titled, .closable, .resizable],
+                          backing: .buffered, defer: false)
+        window.isReleasedWhenClosed = false
+        window.center()
+        window.setFrameAutosaveName("Main Window")
+        window.contentView = NSHostingView(rootView: contentView)
 
-        // refresing listener thread (for talking with helper process that) for stabillity I assumed?
-        timer = Timer.scheduledTimer(timeInterval: Config.appDelegateRefreshTime, target: self, selector: #selector(refresh), userInfo: nil, repeats: true)
-        timer.tolerance = 1 // we don't mind if it runs quite late
+        window.makeKeyAndOrderFront(nil)
+
+        hotKey.keyDownHandler = {
+            print("Pressed ⌥⌘R at \(Date())")
+        }
+
+        grave.keyDownHandler = {
+            self.pidWatcher.resetPoe()
+        }
+
+    }
+
+    @objc func showPreferences(_ sender: NSStatusBarButton) {
+        let contentView = MainScreen()
+        window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
+                          styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
+                          backing: .buffered, defer: false)
+        window.isReleasedWhenClosed = false
+        window.center()
+        window.setFrameAutosaveName("Main Window")
+        window.contentView = NSHostingView(rootView: contentView)
+
+        window.makeKeyAndOrderFront(nil)
+    }
+
+    @objc func quit(_ sender: NSStatusBarButton) {
+        NSApplication.shared.terminate(self)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -121,6 +135,26 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // called when click on dock icon to reopen window
         openapp(nil)
         return true
+    }
+
+    func initMyShit() {
+        init_stats() // must be done before any C threads are fired up
+
+        // set up handler to catch errors.
+        setup_sig_handlers()
+
+        // install appFirewall-Helper, if not already installed
+        UserDefaults.standard.register(defaults: ["force_helper_restart": false])
+        let force = UserDefaults.standard.bool(forKey: "force_helper_restart")
+        start_helper(force: force)
+        // reset, force is one time only
+        UserDefaults.standard.set(false, forKey: "force_helper_restart")
+
+        usefullUtilities()
+
+        // refresing listener thread (for talking with helper process that) for stabillity I assumed?
+        timer = Timer.scheduledTimer(timeInterval: Config.appDelegateRefreshTime, target: self, selector: #selector(refresh), userInfo: nil, repeats: true)
+        timer.tolerance = 1 // we don't mind if it runs quite late
     }
 }
 
@@ -189,7 +223,8 @@ extension AppDelegate {
     }
 }
 
-//MARK: - DO NOT REMOVE
+// MARK: - DO NOT REMOVE
+
 func load_state() {
     load_log(Config.logName, Config.logTxtName)
     load_connlist(get_blocklist(), Config.blockListName); load_connlist(get_whitelist(), Config.whiteListName)
