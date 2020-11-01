@@ -21,6 +21,8 @@ Moreover SMJobBlessUtil also allow u to verify if build is successful or not wit
 ./SMJobBlessUtil.py check \ /Users/[urName]/Library/Developer/Xcode/DerivedData/PoeMac-Lalala/Build/Products/Debug PoeMac.app
 ```
 
+Use `./uninstall_privileged_helper.sh` to clean build
+
 
 ### Authors
 The author who integrated the basic magic
