@@ -8,10 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8824DBCF2538C25B0057C9B0 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8824DBCE2538C25B0057C9B0 /* main.swift */; };
-		8824DBD22538C3430057C9B0 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8824DBD12538C3430057C9B0 /* MainScreen.swift */; };
-		8824DBD72538C3760057C9B0 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8824DBD62538C3760057C9B0 /* MainViewModel.swift */; };
 		88A64D75253B6061002A7F73 /* HotKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A64D74253B6061002A7F73 /* HotKey.swift */; };
-		88ED0A09253B54C300D8CD5C /* PidWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ED0A08253B54C300D8CD5C /* PidWatcher.swift */; };
+		88ED0A09253B54C300D8CD5C /* PoeWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ED0A08253B54C300D8CD5C /* PoeWatcher.swift */; };
 		9139F670237BB18600600D37 /* dtrace.c in Sources */ = {isa = PBXBuildFile; fileRef = 9139F66F237BB18600600D37 /* dtrace.c */; };
 		9139F673237BB1BB00600D37 /* pcap_sniffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 9139F672237BB1BB00600D37 /* pcap_sniffer.c */; };
 		9139F676237BB20F00600D37 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 9139F675237BB20F00600D37 /* util.c */; };
@@ -116,10 +114,8 @@
 
 /* Begin PBXFileReference section */
 		8824DBCE2538C25B0057C9B0 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		8824DBD12538C3430057C9B0 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
-		8824DBD62538C3760057C9B0 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		88A64D74253B6061002A7F73 /* HotKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKey.swift; sourceTree = "<group>"; };
-		88ED0A08253B54C300D8CD5C /* PidWatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PidWatcher.swift; sourceTree = "<group>"; };
+		88ED0A08253B54C300D8CD5C /* PoeWatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoeWatcher.swift; sourceTree = "<group>"; };
 		9135AEF823C3DA7700BBC39F /* conn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = conn.h; sourceTree = "<group>"; };
 		9139F66E237BB18600600D37 /* dtrace.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dtrace.h; sourceTree = "<group>"; };
 		9139F66F237BB18600600D37 /* dtrace.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = dtrace.c; sourceTree = "<group>"; };
@@ -238,6 +234,16 @@
 			path = OLD;
 			sourceTree = "<group>";
 		};
+		8888A214254EF40D0062C7DE /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				8824DBCE2538C25B0057C9B0 /* main.swift */,
+				88A64D74253B6061002A7F73 /* HotKey.swift */,
+				88ED0A08253B54C300D8CD5C /* PoeWatcher.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		91607BA6236AB280002E50A8 = {
 			isa = PBXGroup;
 			children = (
@@ -262,13 +268,17 @@
 		91607BB1236AB280002E50A8 /* appFirewall */ = {
 			isa = PBXGroup;
 			children = (
-				8824DBDA2538CAA80057C9B0 /* OLD */,
-				9180E177238BC731007002CB /* Credits.html */,
+				91B67F2723793C1C00706027 /* TODO */,
 				919074192399072500DE49DE /* dns_connlist.dat */,
+				9180E177238BC731007002CB /* Credits.html */,
 				91ED43D023E5A9BF00966771 /* tests */,
 				9180E1632386653A007002CB /* C workers */,
-				91B67F2723793C1C00706027 /* TODO */,
-				9180E16223865418007002CB /* Screens */,
+				8824DBDA2538CAA80057C9B0 /* OLD */,
+				91607BB2236AB280002E50A8 /* AppDelegate.swift */,
+				919074172397BA7900DE49DE /* Config.swift */,
+				9180E17B238D2882007002CB /* installHelper.swift */,
+				9180E17D238D2D07007002CB /* Helpers-CatchErrors.swift */,
+				8888A214254EF40D0062C7DE /* Main */,
 				91607BB6236AB282002E50A8 /* Assets.xcassets */,
 				9157B051238FC2290027457A /* icons */,
 				91607BBB236AB282002E50A8 /* Info.plist */,
@@ -315,22 +325,6 @@
 				91FE188D23E81DDB004A5CF9 /* tests */,
 			);
 			path = "com.leith.appFirewall-Helper";
-			sourceTree = "<group>";
-		};
-		9180E16223865418007002CB /* Screens */ = {
-			isa = PBXGroup;
-			children = (
-				91607BB2236AB280002E50A8 /* AppDelegate.swift */,
-				919074172397BA7900DE49DE /* Config.swift */,
-				9180E17B238D2882007002CB /* installHelper.swift */,
-				9180E17D238D2D07007002CB /* Helpers-CatchErrors.swift */,
-				8824DBCE2538C25B0057C9B0 /* main.swift */,
-				8824DBD12538C3430057C9B0 /* MainScreen.swift */,
-				8824DBD62538C3760057C9B0 /* MainViewModel.swift */,
-				88ED0A08253B54C300D8CD5C /* PidWatcher.swift */,
-				88A64D74253B6061002A7F73 /* HotKey.swift */,
-			);
-			path = Screens;
 			sourceTree = "<group>";
 		};
 		9180E1632386653A007002CB /* C workers */ = {
@@ -502,8 +496,7 @@
 				8824DBCF2538C25B0057C9B0 /* main.swift in Sources */,
 				91607BF6237142A0002E50A8 /* log.c in Sources */,
 				91D96AD3239648D400AAA73B /* dns_conn_cache.c in Sources */,
-				8824DBD72538C3760057C9B0 /* MainViewModel.swift in Sources */,
-				88ED0A09253B54C300D8CD5C /* PidWatcher.swift in Sources */,
+				88ED0A09253B54C300D8CD5C /* PoeWatcher.swift in Sources */,
 				9180E17E238D2D07007002CB /* Helpers-CatchErrors.swift in Sources */,
 				91ABB29823773595007F8FFE /* hostlists.c in Sources */,
 				9180E1732388ABB7007002CB /* is_blocked.c in Sources */,
@@ -511,7 +504,6 @@
 				91607BC4236AB2D1002E50A8 /* pid_conn_info.c in Sources */,
 				9139F682237D355600600D37 /* circular_list.c in Sources */,
 				9180E1692387F4BB007002CB /* heap.c in Sources */,
-				8824DBD22538C3430057C9B0 /* MainScreen.swift in Sources */,
 				91607BCA236AD090002E50A8 /* sniffer_blocker.c in Sources */,
 				9180E1702388A91F007002CB /* connection.c in Sources */,
 				9139F67F237BC49A00600D37 /* helper.c in Sources */,

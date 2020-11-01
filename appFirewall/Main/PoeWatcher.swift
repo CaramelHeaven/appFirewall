@@ -1,44 +1,46 @@
 //
-//  PidWatcher.swift
+//  PoeWatcher.swift
 //  appFirewall
 //
 //  Created by Sergey Fominov on 10/17/20.
 //  Copyright © 2020 Doug Leith. All rights reserved.
 //
 
+import Cocoa
 import Foundation
 
-class PidWatcher {
-    static let shared = PidWatcher()
+class PoeWatcher {
+    static let shared = PoeWatcher()
 
     private var timer: Timer = Timer()
     private var itemRef: bl_item_t?
 
-    private init() {
+    private var appDelegate: AppDelegate?
+
+    private init() { }
+
+    func startListening() {
         start_pid_watcher()
 
-        self.timer = Timer.scheduledTimer(timeInterval: Config.viewRefreshTime, target: self, selector: #selector(refreshPids(timer:)), userInfo: nil, repeats: true)
+        appDelegate = NSApplication.shared.delegate as? AppDelegate
+
+        timer = Timer.scheduledTimer(timeInterval: Config.viewRefreshTime, target: self, selector: #selector(refreshPids(timer:)), userInfo: nil, repeats: true)
         timer.tolerance = 1 // we don't mind if it runs quite late
+
         refreshPids(timer: nil)
     }
 
     func resetPoe() {
-        var bl_item = itemRef!
-
+        guard var bl_item = itemRef else {
+            appDelegate?.updatePoeStatus(.isNotWork)
+            return
+        }
         add_connitem(get_blocklist(), &bl_item)
 
-        let size = Int(get_connlist_size(get_blocklist()))
-        print("check size: \(size)")
-        print("--------------")
-
-        // We need to wait for unblock, cause immediatly unblocking isn't work
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+        // We need to wait for unblock, 'cause immediatly unblocking isn't working
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1000)) {
             let item = get_connlist_item(get_blocklist(), Int32(0))
             del_connitem(get_blocklist(), item)
-
-            let size2 = Int(get_connlist_size(get_blocklist()))
-            print("check size: \(size2)")
-            print("ASD")
         }
     }
 
@@ -63,26 +65,30 @@ class PidWatcher {
     }
 }
 
-extension PidWatcher {
+fileprivate extension PoeWatcher {
     func findPoe(upperBound: Int) {
         for i in 0...upperBound {
             let row = Int32(mapRow(row: i))
             var item = get_gui_conn(row)
 
             let pidName = String(cString: &item.name.0)
-            print("PID NAME: \(pidName)")
+
             guard pidName.contains("Exile") else {
                 continue
             }
-            print("POE FOUND")
+
             itemRef = conn_to_bl_item(&item)
-            break
+            appDelegate?.updatePoeStatus(.isWork)
+
+            return
         }
+
+        appDelegate?.updatePoeStatus(.isNotWork)
     }
 }
 
 // Dont want to figure out what is really do for now
-extension PidWatcher {
+fileprivate extension PoeWatcher {
     func mapRow(row: Int) -> Int {
         // map from displayed row to row in list itself
         let log_last = numberOfConnections() - 1

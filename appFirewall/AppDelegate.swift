@@ -11,104 +11,43 @@ import ServiceManagement
 import SwiftUI
 
 class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
-    // --------------------------------------------------------
-    // private variables
-    // timer for periodic polling ...
-    var timer: Timer = Timer()
-    var count_stats: Int = 0
+    enum PoeStatus: String {
+        case isWork = "PoE is work"
+        case isNotWork = "PoE isn't work"
+    }
 
+    private var timer: Timer = Timer()
+
+    private var keyLogout = HotKey(key: .grave, modifiers: [])
     private var window: NSWindow!
-    var statusBarItem: NSStatusItem!
-    var statusBarMenu: NSMenu!
 
-    @objc func openapp(_ sender: Any?) {
-        // reopen window
-
-        // if window already exists,and it should since we don't
-        // release it on close, then we just reopen it.
-        // hopefully this should work almost all of the time
-        // (seems like an error if it doesn't work)
-        for window in NSApp.windows {
-            print(window, window.title)
-            // as well as the main window the status bar button has a window
-            if window.title == "appFirewall" {
-                print("openapp() restoring existing window")
-                window.makeKeyAndOrderFront(self) // bring to front
-
-                NSApp.activate(ignoringOtherApps: true)
-                return
-            }
-        }
-        print("WARNING: openapp() falling back to creating new window")
-    }
-
-    @objc func refresh() {
-        // note: state is saved on window close, no need to do it here
-        // (and if we do it here it might be interrupted by a window
-        // close event and lead to file corruption
-
-        // check if listener thread (for talking with helper process that
-        // has root privilege) has run into trouble -- if so, its fatal
-        if Int(check_for_error()) != 0 {
-            print("CRUSH")
-//            exit_popup(msg: String(cString: get_error_msg()), force: Int(get_error_force()))
-            // this call won't return
-        }
-    }
-
-    let hotKey = HotKey(key: .r, modifiers: [.option])
-    let grave = HotKey(key: .grave, modifiers: [])
-    let pidWatcher = PidWatcher.shared
+    private var statusBarItem: NSStatusItem!
+    private var statusBarMenu: NSMenu!
 
     func applicationWillFinishLaunching(_ aNotification: Notification) {
-        initMyShit()
+        initSomething()
 
         statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-        statusBarItem.button?.title = "FUCK"
+        statusBarItem.button?.title = PoeStatus.isNotWork.rawValue
 
         statusBarMenu = NSMenu()
         statusBarMenu.delegate = self
 
         statusBarMenu.addItem(withTitle: "Is poe connected?", action: nil, keyEquivalent: "")
-        statusBarMenu.addItem(withTitle: "Preferences", action: #selector(showPreferences(_:)), keyEquivalent: "")
         statusBarMenu.addItem(NSMenuItem.separator())
 
         statusBarMenu.addItem(withTitle: "Quit", action: #selector(quit(_:)), keyEquivalent: "")
-
         statusBarItem.menu = statusBarMenu
-        
-        let contentView = MainScreen()
-        window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 100, height: 100),
-                          styleMask: [.titled, .closable, .resizable],
-                          backing: .buffered, defer: false)
-        window.isReleasedWhenClosed = false
-        window.center()
-        window.setFrameAutosaveName("Main Window")
-        window.contentView = NSHostingView(rootView: contentView)
 
-        window.makeKeyAndOrderFront(nil)
-
-        hotKey.keyDownHandler = {
-            print("Pressed ⌥⌘R at \(Date())")
+        keyLogout.keyDownHandler = {
+            PoeWatcher.shared.resetPoe()
         }
 
-        grave.keyDownHandler = {
-            self.pidWatcher.resetPoe()
-        }
-
+        PoeWatcher.shared.startListening()
     }
 
-    @objc func showPreferences(_ sender: NSStatusBarButton) {
-        let contentView = MainScreen()
-        window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
-                          styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
-                          backing: .buffered, defer: false)
-        window.isReleasedWhenClosed = false
-        window.center()
-        window.setFrameAutosaveName("Main Window")
-        window.contentView = NSHostingView(rootView: contentView)
-
-        window.makeKeyAndOrderFront(nil)
+    func updatePoeStatus(_ status: PoeStatus) {
+        statusBarItem.button?.title = status.rawValue
     }
 
     @objc func quit(_ sender: NSStatusBarButton) {
@@ -120,8 +59,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         // viewWillDisappear() event is triggered for any open windows
         // and will call save_state(), so no need to do it again here
         stop_helper_listeners()
-        if Config.getBlockQUIC() { unblock_QUIC() }
-        if Config.getDnscrypt_proxy() { stop_dnscrypt_proxy() }
+        if Config.getBlockQUIC() {
+            unblock_QUIC()
+        }
+
+        if Config.getDnscrypt_proxy() {
+            stop_dnscrypt_proxy()
+        }
     }
 
     func applicationDidEnterBackground(_ aNotification: Notification) {
@@ -130,14 +74,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         print("going into background")
     }
 
-    func applicationShouldHandleReopen(_ sender: NSApplication,
-                                       hasVisibleWindows flag: Bool) -> Bool {
-        // called when click on dock icon to reopen window
-        openapp(nil)
-        return true
-    }
-
-    func initMyShit() {
+    func initSomething() {
         init_stats() // must be done before any C threads are fired up
 
         // set up handler to catch errors.
@@ -155,6 +92,26 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         // refresing listener thread (for talking with helper process that) for stabillity I assumed?
         timer = Timer.scheduledTimer(timeInterval: Config.appDelegateRefreshTime, target: self, selector: #selector(refresh), userInfo: nil, repeats: true)
         timer.tolerance = 1 // we don't mind if it runs quite late
+    }
+}
+
+// MARK: - Show Error
+
+extension AppDelegate {
+    @objc func refresh() {
+        // note: state is saved on window close, no need to do it here
+        // (and if we do it here it might be interrupted by a window
+        // close event and lead to file corruption
+
+        // check if listener thread (for talking with helper process that
+        // has root privilege) has run into trouble -- if so, its fatal
+        guard Int(check_for_error()) != 0 else { return }
+
+        let alert = NSAlert()
+        alert.messageText = "Hello dude"
+        alert.informativeText = "The program has crushed, sorry, Without logs for now. U can try to restart c:"
+
+        alert.runModal()
     }
 }
 
@@ -227,12 +184,17 @@ extension AppDelegate {
 
 func load_state() {
     load_log(Config.logName, Config.logTxtName)
+
+    // important line
     load_connlist(get_blocklist(), Config.blockListName); load_connlist(get_whitelist(), Config.whiteListName)
+
     load_dns_cache(Config.dnsName)
+
     // we distribute app with preconfigured dns_conn cache so that
     // can guess process names of common apps more quickly
     let filePath = String(cString: get_path())
     let backupPath = Bundle.main.resourcePath ?? "./"
+
     if load_dns_conn_list(filePath, Config.dnsConnListName) < 0 {
         print("Falling back to loading dns_conn_list from ", backupPath)
         load_dns_conn_list(backupPath, Config.dnsConnListName)
