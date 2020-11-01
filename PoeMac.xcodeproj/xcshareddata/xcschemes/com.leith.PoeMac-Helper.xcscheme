@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "91607C1D2372FF40002E50A8"
-               BuildableName = "com.leith.appFirewall-Helper"
-               BlueprintName = "com.leith.appFirewall-Helper"
-               ReferencedContainer = "container:appFirewall.xcodeproj">
+               BuildableName = "com.caramelheaven.PoeMac-Helper"
+               BlueprintName = "com.leith.PoeMac-Helper"
+               ReferencedContainer = "container:PoeMac.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -84,9 +84,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "91607C1D2372FF40002E50A8"
-            BuildableName = "com.leith.appFirewall-Helper"
-            BlueprintName = "com.leith.appFirewall-Helper"
-            ReferencedContainer = "container:appFirewall.xcodeproj">
+            BuildableName = "com.caramelheaven.PoeMac-Helper"
+            BlueprintName = "com.leith.PoeMac-Helper"
+            ReferencedContainer = "container:PoeMac.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -123,9 +123,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "91607C1D2372FF40002E50A8"
-            BuildableName = "com.leith.appFirewall-Helper"
-            BlueprintName = "com.leith.appFirewall-Helper"
-            ReferencedContainer = "container:appFirewall.xcodeproj">
+            BuildableName = "com.caramelheaven.PoeMac-Helper"
+            BlueprintName = "com.leith.PoeMac-Helper"
+            ReferencedContainer = "container:PoeMac.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

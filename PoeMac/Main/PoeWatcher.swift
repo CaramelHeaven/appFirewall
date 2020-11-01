@@ -83,6 +83,7 @@ fileprivate extension PoeWatcher {
             return
         }
 
+        itemRef = nil
         appDelegate?.updatePoeStatus(.isNotWork)
     }
 }

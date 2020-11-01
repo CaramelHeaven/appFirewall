@@ -11,6 +11,6 @@
 	<key>RunAtLoad</key>
 	<true/>
 	<key>Label</key>
-	<string>com.leith.appFirewall-Helper</string>
+	<string>com.caramelheaven.PoeMac-Helper</string>
 </dict>
 </plist>

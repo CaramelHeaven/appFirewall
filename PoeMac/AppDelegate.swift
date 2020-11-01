@@ -50,7 +50,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         statusBarItem.button?.title = status.rawValue
     }
 
-    @objc func quit(_ sender: NSStatusBarButton) {
+    @objc func quit(_ sender: NSStatusBarButton? = nil) {
         NSApplication.shared.terminate(self)
     }
 
@@ -109,9 +109,11 @@ extension AppDelegate {
 
         let alert = NSAlert()
         alert.messageText = "Hello dude"
-        alert.informativeText = "The program has crushed, sorry, Without logs for now. U can try to restart c:"
+        alert.informativeText = "The program has crushed, sorry. Without logs for now. U can try to restart it c:"
 
-        alert.runModal()
+        alert.beginSheetModal(for: NSApplication.shared.windows.first!) { _ in
+            self.quit()
+        }
     }
 }
 

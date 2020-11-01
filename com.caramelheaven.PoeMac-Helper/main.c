@@ -128,7 +128,7 @@ int main(int argc, char *argv[]) {
 		write(pidfd,pid_str,strnlen(pid_str,STR_SIZE));
 		close(pidfd);
 	}
-	char *rot_fmt="#logfilename\t\t\t[owner:group]\tmode\tcount\tsize(KB)\twhen\tflags\t[/pid_file\t[sig_num]\n%s\troot:wheel\t644\t5\t5000\t*\tZ\t/var/run/com.leith.appFirewall-Helper.pid\n";
+	char *rot_fmt="#logfilename\t\t\t[owner:group]\tmode\tcount\tsize(KB)\twhen\tflags\t[/pid_file\t[sig_num]\n%s\troot:wheel\t644\t5\t5000\t*\tZ\t/var/run/com.caramelheaven.PoeMac-Helper.pid\n";
   char rot_str[STR_SIZE];
   snprintf(rot_str,STR_SIZE,rot_fmt,LOGFILE);
 	int rotatefd = open(ROTFILE,O_WRONLY|O_CREAT,0644);

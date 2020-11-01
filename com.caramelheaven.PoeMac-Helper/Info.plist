@@ -3,14 +3,12 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleIdentifier</key>
-	<string>com.leith.appFirewall-Helper</string>
+	<string>com.caramelheaven.PoeMac-Helper</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>appFirewall-Helper</string>
+	<string>PoeMac-Helper</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
-	<key>SMAuthorizedClients</key>
-	<array>
-		<string>identifier "com.leith.appFirewall"</string>
-	</array>
 </dict>
 </plist>

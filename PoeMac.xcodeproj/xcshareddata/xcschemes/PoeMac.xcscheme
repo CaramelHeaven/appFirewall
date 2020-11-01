@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "91607BAE236AB280002E50A8"
-               BuildableName = "appFirewall.app"
-               BlueprintName = "appFirewall"
-               ReferencedContainer = "container:appFirewall.xcodeproj">
+               BuildableName = "PoeMac.app"
+               BlueprintName = "PoeMac"
+               ReferencedContainer = "container:PoeMac.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -75,7 +75,7 @@
                BlueprintIdentifier = "91ED43D623E5AACC00966771"
                BuildableName = "appFirewallTests.xctest"
                BlueprintName = "appFirewallTests"
-               ReferencedContainer = "container:appFirewall.xcodeproj">
+               ReferencedContainer = "container:PoeMac.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -95,9 +95,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "91607BAE236AB280002E50A8"
-            BuildableName = "appFirewall.app"
-            BlueprintName = "appFirewall"
-            ReferencedContainer = "container:appFirewall.xcodeproj">
+            BuildableName = "PoeMac.app"
+            BlueprintName = "PoeMac"
+            ReferencedContainer = "container:PoeMac.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -144,9 +144,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "91607BAE236AB280002E50A8"
-            BuildableName = "appFirewall.app"
-            BlueprintName = "appFirewall"
-            ReferencedContainer = "container:appFirewall.xcodeproj">
+            BuildableName = "PoeMac.app"
+            BlueprintName = "PoeMac"
+            ReferencedContainer = "container:PoeMac.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
