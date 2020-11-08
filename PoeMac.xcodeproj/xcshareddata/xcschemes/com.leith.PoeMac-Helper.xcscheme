@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "91607C1D2372FF40002E50A8"
                BuildableName = "com.caramelheaven.PoeMac-Helper"
-               BlueprintName = "com.leith.PoeMac-Helper"
+               BlueprintName = "com.caramelheaven.PoeMac-Helper"
                ReferencedContainer = "container:PoeMac.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -85,7 +85,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "91607C1D2372FF40002E50A8"
             BuildableName = "com.caramelheaven.PoeMac-Helper"
-            BlueprintName = "com.leith.PoeMac-Helper"
+            BlueprintName = "com.caramelheaven.PoeMac-Helper"
             ReferencedContainer = "container:PoeMac.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -124,7 +124,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "91607C1D2372FF40002E50A8"
             BuildableName = "com.caramelheaven.PoeMac-Helper"
-            BlueprintName = "com.leith.PoeMac-Helper"
+            BlueprintName = "com.caramelheaven.PoeMac-Helper"
             ReferencedContainer = "container:PoeMac.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

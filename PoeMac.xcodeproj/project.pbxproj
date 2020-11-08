@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8824DBCF2538C25B0057C9B0 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8824DBCE2538C25B0057C9B0 /* main.swift */; };
+		8891673B25587AF4004A1B7A /* libnet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8891673A25587AF4004A1B7A /* libnet.a */; };
+		8891673C25587AF4004A1B7A /* libnet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8891673A25587AF4004A1B7A /* libnet.a */; };
 		88A64D75253B6061002A7F73 /* HotKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A64D74253B6061002A7F73 /* HotKey.swift */; };
 		88ED0A09253B54C300D8CD5C /* PoeWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ED0A08253B54C300D8CD5C /* PoeWatcher.swift */; };
 		9139F670237BB18600600D37 /* dtrace.c in Sources */ = {isa = PBXBuildFile; fileRef = 9139F66F237BB18600600D37 /* dtrace.c */; };
@@ -26,7 +28,6 @@
 		91607BCF236AD7F5002E50A8 /* libpcap.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 91607BCD236AD702002E50A8 /* libpcap.tbd */; };
 		91607BF6237142A0002E50A8 /* log.c in Sources */ = {isa = PBXBuildFile; fileRef = 91607BF5237142A0002E50A8 /* log.c */; };
 		91607BFA23714D46002E50A8 /* dns_sniffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 91607BF923714D46002E50A8 /* dns_sniffer.m */; };
-		91607C2B2372FF7F002E50A8 /* libnet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91607C252372FF7E002E50A8 /* libnet.a */; };
 		91607C2C2372FF7F002E50A8 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 91607C262372FF7E002E50A8 /* main.c */; };
 		91607C2D2372FFAE002E50A8 /* com.caramelheaven.PoeMac-Helper in CopyFiles */ = {isa = PBXBuildFile; fileRef = 91607C1E2372FF40002E50A8 /* com.caramelheaven.PoeMac-Helper */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		91607C312374080C002E50A8 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 91607C302374080B002E50A8 /* util.c */; };
@@ -113,6 +114,7 @@
 
 /* Begin PBXFileReference section */
 		8824DBCE2538C25B0057C9B0 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		8891673A25587AF4004A1B7A /* libnet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libnet.a; sourceTree = "<group>"; };
 		88A64D74253B6061002A7F73 /* HotKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKey.swift; sourceTree = "<group>"; };
 		88ED0A08253B54C300D8CD5C /* PoeWatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoeWatcher.swift; sourceTree = "<group>"; };
 		9135AEF823C3DA7700BBC39F /* conn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = conn.h; sourceTree = "<group>"; };
@@ -152,7 +154,6 @@
 		91607BF823714D46002E50A8 /* dns_sniffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dns_sniffer.h; sourceTree = "<group>"; };
 		91607BF923714D46002E50A8 /* dns_sniffer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = dns_sniffer.m; sourceTree = "<group>"; };
 		91607C1E2372FF40002E50A8 /* com.caramelheaven.PoeMac-Helper */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "com.caramelheaven.PoeMac-Helper"; sourceTree = BUILT_PRODUCTS_DIR; };
-		91607C252372FF7E002E50A8 /* libnet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libnet.a; sourceTree = "<group>"; };
 		91607C262372FF7E002E50A8 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		91607C272372FF7F002E50A8 /* launchd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = launchd.plist; sourceTree = "<group>"; };
 		91607C282372FF7F002E50A8 /* libnet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libnet.h; sourceTree = "<group>"; };
@@ -207,6 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				91FDE84323DC00BC0097BBCA /* libcurl.tbd in Frameworks */,
+				8891673B25587AF4004A1B7A /* libnet.a in Frameworks */,
 				91607BCF236AD7F5002E50A8 /* libpcap.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -216,8 +218,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				91B5909A23925620000F418D /* libdtrace.tbd in Frameworks */,
+				8891673C25587AF4004A1B7A /* libnet.a in Frameworks */,
 				91ABB26B2375D659007F8FFE /* libpcap.tbd in Frameworks */,
-				91607C2B2372FF7F002E50A8 /* libnet.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,9 +294,9 @@
 		91607C1F2372FF40002E50A8 /* com.caramelheaven.PoeMac-Helper */ = {
 			isa = PBXGroup;
 			children = (
+				8891673A25587AF4004A1B7A /* libnet.a */,
 				91607C272372FF7F002E50A8 /* launchd.plist */,
 				91607C292372FF7F002E50A8 /* Info.plist */,
-				91607C252372FF7E002E50A8 /* libnet.a */,
 				91607C282372FF7F002E50A8 /* libnet.h */,
 				91607C262372FF7E002E50A8 /* main.c */,
 				9139F671237BB1BB00600D37 /* pcap_sniffer.h */,
@@ -405,9 +407,9 @@
 			productReference = 91607BAF236AB280002E50A8 /* PoeMac.app */;
 			productType = "com.apple.product-type.application";
 		};
-		91607C1D2372FF40002E50A8 /* com.leith.PoeMac-Helper */ = {
+		91607C1D2372FF40002E50A8 /* com.caramelheaven.PoeMac-Helper */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 91607C222372FF40002E50A8 /* Build configuration list for PBXNativeTarget "com.leith.PoeMac-Helper" */;
+			buildConfigurationList = 91607C222372FF40002E50A8 /* Build configuration list for PBXNativeTarget "com.caramelheaven.PoeMac-Helper" */;
 			buildPhases = (
 				91607C1A2372FF40002E50A8 /* Sources */,
 				91607C1B2372FF40002E50A8 /* Frameworks */,
@@ -418,7 +420,7 @@
 			);
 			dependencies = (
 			);
-			name = "com.leith.PoeMac-Helper";
+			name = "com.caramelheaven.PoeMac-Helper";
 			productName = "com.leith.appFirewall-Helper";
 			productReference = 91607C1E2372FF40002E50A8 /* com.caramelheaven.PoeMac-Helper */;
 			productType = "com.apple.product-type.tool";
@@ -456,7 +458,7 @@
 			projectRoot = "";
 			targets = (
 				91607BAE236AB280002E50A8 /* PoeMac */,
-				91607C1D2372FF40002E50A8 /* com.leith.PoeMac-Helper */,
+				91607C1D2372FF40002E50A8 /* com.caramelheaven.PoeMac-Helper */,
 			);
 		};
 /* End PBXProject section */
@@ -671,6 +673,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/PoeMac",
 					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks/NetworkStatistics.framework/Versions/A",
+					"$(PROJECT_DIR)/com.caramelheaven.PoeMac-Helper",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 2.04;
@@ -718,6 +721,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/PoeMac",
 					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks/NetworkStatistics.framework/Versions/A",
+					"$(PROJECT_DIR)/com.caramelheaven.PoeMac-Helper",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 2.04;
@@ -818,7 +822,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		91607C222372FF40002E50A8 /* Build configuration list for PBXNativeTarget "com.leith.PoeMac-Helper" */ = {
+		91607C222372FF40002E50A8 /* Build configuration list for PBXNativeTarget "com.caramelheaven.PoeMac-Helper" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				91607C232372FF40002E50A8 /* Debug */,
