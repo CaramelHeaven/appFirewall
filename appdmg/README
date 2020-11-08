@@ -1,5 +1,6 @@
+Helping tool for create dmg
 https://github.com/LinusU/node-appdmg
 
-cmd to create dmg is:
+build:
 
-appdmg appdmg.json appFirewall.dmg
+appdmg appdmg.json ~/Desktop/PoeMac.dmg

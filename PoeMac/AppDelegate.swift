@@ -12,8 +12,8 @@ import SwiftUI
 
 class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     enum PoeStatus: String {
-        case isWork = "PoE is work"
-        case isNotWork = "PoE isn't work"
+        case isRunning = "PoE is running"
+        case isNotRunning = "PoE isn't running"
     }
 
     private var timer: Timer = Timer()
@@ -28,7 +28,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         initSomething()
 
         statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-        statusBarItem.button?.title = PoeStatus.isNotWork.rawValue
+        statusBarItem.button?.title = PoeStatus.isNotRunning.rawValue
 
         statusBarMenu = NSMenu()
         statusBarMenu.delegate = self

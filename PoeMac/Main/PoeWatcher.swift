@@ -32,7 +32,7 @@ class PoeWatcher {
 
     func resetPoe() {
         guard var bl_item = itemRef else {
-            appDelegate?.updatePoeStatus(.isNotWork)
+            appDelegate?.updatePoeStatus(.isNotRunning)
             return
         }
         add_connitem(get_blocklist(), &bl_item)
@@ -78,13 +78,13 @@ fileprivate extension PoeWatcher {
             }
 
             itemRef = conn_to_bl_item(&item)
-            appDelegate?.updatePoeStatus(.isWork)
+            appDelegate?.updatePoeStatus(.isRunning)
 
             return
         }
 
         itemRef = nil
-        appDelegate?.updatePoeStatus(.isNotWork)
+        appDelegate?.updatePoeStatus(.isNotRunning)
     }
 }
 
